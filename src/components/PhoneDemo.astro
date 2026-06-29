@@ -1,18 +1,30 @@
 ---
 // "Video" del hero: carrusel con crossfade de capturas reales (optimizadas a WebP).
-import { Image } from 'astro:assets';
-import image1 from '../assets/screens/image1.png';
-import image2 from '../assets/screens/image2.png';
-import image3 from '../assets/screens/image3.png';
-import image9 from '../assets/screens/image9.png';
-import image6 from '../assets/screens/image6.png';
+import { Image } from "astro:assets";
+import screenHome from "../assets/screens/screen-home.png";
+import screenSimulacro from "../assets/screens/screen-simulacro.png";
+import screenResultados from "../assets/screens/screen-resultados.png";
+import screenProgresoMarkov from "../assets/screens/screen-progreso-markov.png";
+import screenMatchCarrera from "../assets/screens/screen-match-carrera.png";
 
 const screens = [
-  { src: image1, alt: 'Pantalla de inicio con tu progreso y afinidad de carrera' },
-  { src: image2, alt: 'Simulacro con preguntas reales del examen de admisión UNC' },
-  { src: image3, alt: 'Resultados del simulacro con recomendaciones de estudio' },
-  { src: image9, alt: 'Test de afinidad vocacional' },
-  { src: image6, alt: 'Tu mejor match de carrera' },
+  {
+    src: screenHome,
+    alt: "Pantalla de inicio con progreso y recomendación adaptativa",
+  },
+  {
+    src: screenSimulacro,
+    alt: "Simulacro con preguntas reales del examen de admisión UNC",
+  },
+  {
+    src: screenResultados,
+    alt: "Resultados del simulacro con diagnóstico por temas",
+  },
+  {
+    src: screenProgresoMarkov,
+    alt: "Mapa de dominio Markov con fortalezas y puntos críticos",
+  },
+  { src: screenMatchCarrera, alt: "Tu mejor match de carrera en la UNC" },
 ];
 ---
 
@@ -21,13 +33,14 @@ const screens = [
     {
       screens.map((s, i) => (
         <Image
-          class:list={['slide', { active: i === 0 }]}
+          class:list={["slide", { active: i === 0 }]}
           src={s.src}
           alt={s.alt}
           width={600}
           format="webp"
           quality={70}
-          loading={i === 0 ? 'eager' : 'lazy'}
+          loading={i === 0 ? "eager" : "lazy"}
+          fetchpriority={i === 0 ? "high" : "low"}
         />
       ))
     }
@@ -38,30 +51,41 @@ const screens = [
   .slide {
     opacity: 0;
     transform: scale(1.04);
-    transition: opacity 0.7s ease, transform 6s ease-out;
+    transition:
+      opacity 0.7s ease,
+      transform 6s ease-out;
   }
   .slide.active {
     opacity: 1;
     transform: scale(1);
   }
   @media (prefers-reduced-motion: reduce) {
-    .slide { transition: opacity 0.3s ease; transform: none; }
-    .slide.active { transform: none; }
+    .slide {
+      transition: opacity 0.3s ease;
+      transform: none;
+    }
+    .slide.active {
+      transform: none;
+    }
   }
 </style>
 
 <script>
   (function () {
-    const slides = Array.from(document.querySelectorAll<HTMLImageElement>('.demo .slide'));
+    const slides = Array.from(
+      document.querySelectorAll<HTMLImageElement>(".demo .slide"),
+    );
     if (slides.length < 2) return;
 
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const reduced = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
     let i = 0;
 
     function next() {
-      slides[i].classList.remove('active');
+      slides[i].classList.remove("active");
       i = (i + 1) % slides.length;
-      slides[i].classList.add('active');
+      slides[i].classList.add("active");
     }
 
     setInterval(next, reduced ? 4200 : 3400);
