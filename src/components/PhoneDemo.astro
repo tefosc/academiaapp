@@ -1,0 +1,69 @@
+---
+// "Video" del hero: carrusel con crossfade de capturas reales (optimizadas a WebP).
+import { Image } from 'astro:assets';
+import image1 from '../assets/screens/image1.png';
+import image2 from '../assets/screens/image2.png';
+import image3 from '../assets/screens/image3.png';
+import image9 from '../assets/screens/image9.png';
+import image6 from '../assets/screens/image6.png';
+
+const screens = [
+  { src: image1, alt: 'Pantalla de inicio con tu progreso y afinidad de carrera' },
+  { src: image2, alt: 'Simulacro con preguntas reales del examen de admisión UNC' },
+  { src: image3, alt: 'Resultados del simulacro con recomendaciones de estudio' },
+  { src: image9, alt: 'Test de afinidad vocacional' },
+  { src: image6, alt: 'Tu mejor match de carrera' },
+];
+---
+
+<div class="device demo">
+  <div class="device-screen">
+    {
+      screens.map((s, i) => (
+        <Image
+          class:list={['slide', { active: i === 0 }]}
+          src={s.src}
+          alt={s.alt}
+          width={600}
+          format="webp"
+          quality={70}
+          loading={i === 0 ? 'eager' : 'lazy'}
+        />
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .slide {
+    opacity: 0;
+    transform: scale(1.04);
+    transition: opacity 0.7s ease, transform 6s ease-out;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: scale(1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .slide { transition: opacity 0.3s ease; transform: none; }
+    .slide.active { transform: none; }
+  }
+</style>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll<HTMLImageElement>('.demo .slide'));
+    if (slides.length < 2) return;
+
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let i = 0;
+
+    function next() {
+      slides[i].classList.remove('active');
+      i = (i + 1) % slides.length;
+      slides[i].classList.add('active');
+    }
+
+    setInterval(next, reduced ? 4200 : 3400);
+  })();
+</script>
