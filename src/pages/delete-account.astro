@@ -1,8 +1,11 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Eliminar cuenta — AcademIA" description="Instrucciones para eliminar tu cuenta de AcademIA.">
+<Layout
+  title="Eliminar cuenta — AcademIA"
+  description="Instrucciones para eliminar tu cuenta de AcademIA."
+>
   <div class="page">
     <div class="page-container">
       <a href="/" class="back">← Volver</a>
@@ -13,10 +16,30 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
-  .page { min-height: 100vh; padding: 80px 24px; }
-  .page-container { max-width: 720px; margin: 0 auto; }
-  .back { font-size: 14px; color: var(--muted); display: inline-block; margin-bottom: 32px; }
-  .back:hover { color: var(--ink); }
-  h1 { font-size: 36px; font-weight: 800; color: var(--navy-deep); margin-bottom: 16px; }
-  .placeholder { color: var(--muted); }
+  .page {
+    min-height: 100vh;
+    padding: 80px 24px;
+  }
+  .page-container {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .back {
+    font-size: 14px;
+    color: var(--muted);
+    display: inline-block;
+    margin-bottom: 32px;
+  }
+  .back:hover {
+    color: var(--ink);
+  }
+  h1 {
+    font-size: 36px;
+    font-weight: 800;
+    color: var(--navy-deep);
+    margin-bottom: 16px;
+  }
+  .placeholder {
+    color: var(--muted);
+  }
 </style>

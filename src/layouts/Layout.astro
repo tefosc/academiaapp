@@ -1,5 +1,5 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
   title?: string;
@@ -8,9 +8,9 @@ interface Props {
 }
 
 const {
-  title = 'AcademIA — Preparación examen de admisión UNC',
-  description = 'Practica con exámenes reales de admisión a la UNC, recibe un plan que se ajusta a ti y descubre qué tan cerca estás de tu carrera ideal.',
-  image = '/og.png',
+  title = "AcademIA — Preparación examen de admisión UNC",
+  description = "Practica con exámenes reales de admisión a la UNC, recibe un plan que se ajusta a ti y descubre qué tan cerca estás de tu carrera ideal.",
+  image = "/og.png",
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -39,7 +39,10 @@ const ogImage = new URL(image, Astro.site);
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="AcademIA — preparación para el examen de admisión UNC" />
+    <meta
+      property="og:image:alt"
+      content="AcademIA — preparación para el examen de admisión UNC"
+    />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -48,6 +51,7 @@ const ogImage = new URL(image, Astro.site);
     <meta name="twitter:image" content={ogImage} />
   </head>
   <body>
+    <a href="#content" class="skip-link">Saltar al contenido</a>
     <slot />
   </body>
 </html>
