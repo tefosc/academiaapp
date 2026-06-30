@@ -1,50 +1,22 @@
-:root {
-  --navy: #1B3D6E;
-  --navy-deep: #0F2748;
-  --gold: #F5A623;
-  --teal: #15A98C;
-  --green: #1E9254;
-  --bg: #0E1B2E;
-  --card: #132034;
-  --ink: #E3DFD5;
-  --muted: rgba(227, 223, 213, 0.52);
-  --border: rgba(255, 255, 255, 0.09);
-  --blue-light: #E9EEFA;
-  --shadow: rgba(0, 0, 0, 0.45);
-
-  /* Escala tipográfica */
-  --text-xs:   11px;
-  --text-sm:   13px;
-  --text-base: 15px;
-  --text-md:   17px;
-  --text-lg:   20px;
-  --text-xl:   clamp(22px, 2.6vw, 30px);
-  --text-2xl:  clamp(27px, 3.4vw, 40px);
-  --text-3xl:  clamp(34px, 5vw, 56px);
-
-  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-}
-
-*, *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
+  -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
 }
 
 body {
-  background: var(--bg);
-  color: var(--ink);
+  margin: 0;
+  background: #0b1220;
+  color: #fafaf7;
+  font-family: Inter, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   overflow-x: hidden;
-  line-height: 1.55;
-}
-
-img, svg {
-  display: block;
-  max-width: 100%;
 }
 
 a {
@@ -52,22 +24,10 @@ a {
   text-decoration: none;
 }
 
-.skip-link {
-  position: absolute;
-  top: -100%;
-  left: 16px;
-  z-index: 9999;
-  background: var(--navy-deep);
-  color: #fff;
-  font-size: 14px;
-  font-weight: 700;
-  padding: 10px 18px;
-  border-radius: 0 0 8px 8px;
-  text-decoration: none;
-  transition: top 0.12s ease;
-}
-.skip-link:focus {
-  top: 0;
+img,
+svg {
+  display: block;
+  max-width: 100%;
 }
 
 button {
@@ -75,38 +35,7 @@ button {
   cursor: pointer;
 }
 
-/* ---------- marco de teléfono reutilizable (device) ---------- */
-.device {
-  position: relative;
-  width: 280px;
-  aspect-ratio: 724 / 1568;
-  background: linear-gradient(155deg, #23262E, #0B0C10 60%);
-  border-radius: 42px;
-  padding: 9px;
-  box-shadow:
-    0 50px 90px -34px var(--shadow),
-    0 12px 28px -18px rgba(11, 12, 16, 0.5),
-    0 0 0 1.5px rgba(255, 255, 255, 0.06) inset,
-    0 0 0 1px rgba(11, 12, 16, 0.4);
-}
-.device.sm { width: 224px; border-radius: 36px; padding: 8px; }
-.device.lg { width: 300px; }
-
-.device-screen {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 33px;
-  overflow: hidden;
-  background: var(--bg);
-}
-.device.sm .device-screen { border-radius: 29px; }
-
-.device-screen img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: top center;
+::selection {
+  background: #f59e0b;
+  color: #0b1220;
 }
