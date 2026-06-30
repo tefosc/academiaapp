@@ -1,5 +1,15 @@
-reference
 node_modules
 dist
 .astro
-.agents
+
+# Claude Code
+.claude/
+.agents/
+skills-lock.json
+UI-REVIEW.md
+
+# GSD / planning
+.planning/
+
+# legacy
+reference
