@@ -18,7 +18,7 @@ import Layout from "../layouts/Layout.astro";
             <a href="#features">Features</a>
             <a href="#modulos">Módulos UNC</a>
           </div>
-          <a href="#descargar" class="nav-cta">Descargar</a>
+          <!-- <a href="#descargar" class="nav-cta">Descargar</a> -->
         </div>
       </div>
     </nav>
@@ -50,23 +50,9 @@ import Layout from "../layouts/Layout.astro";
           </div>
           <h1>Tu ingreso a la UNC, <span class="h1-gold">calculado en tiempo real.</span></h1>
           <p class="hero-lead">AcademIA mide tu <strong>afinidad</strong> por cada carrera mientras practicas. Un sistema de Cadenas de Markov aprende de cada respuesta y te dice qué estudiar hoy.</p>
-          <div id="descargar" class="store-row">
-            <a href="https://play.google.com/store/apps" class="store-btn store-btn--light">
-              <i class="mdi mdi-google-play store-icon"></i>
-              <span class="store-text">
-                <small>Disponible en</small>
-                <strong>Google Play</strong>
-              </span>
-            </a>
-            <a href="https://www.apple.com/app-store/" class="store-btn store-btn--outline">
-              <i class="mdi mdi-apple store-icon"></i>
-              <span class="store-text">
-                <small>Descarga en</small>
-                <strong>App Store</strong>
-              </span>
-            </a>
+          <div id="descargar" class="store-coming-soon">
+            <span class="coming-badge">Próximamente en iOS y Android</span>
           </div>
-          <p class="hero-footnote">Gratis para empezar · iOS y Android</p>
         </div>
 
         <div class="hero-phone-slot">
@@ -335,21 +321,8 @@ import Layout from "../layouts/Layout.astro";
             <span class="kicker kicker--teal">Tu próximo paso</span>
             <h2 class="cta-h2">Empieza hoy.<br /><span class="cta-muted">Tu examen no espera.</span></h2>
             <p class="cta-desc">Descarga AcademIA y mira tu afinidad subir desde la primera práctica.</p>
-            <div class="store-row store-row--center">
-              <a href="https://play.google.com/store/apps" class="store-btn store-btn--light">
-                <i class="mdi mdi-google-play store-icon"></i>
-                <span class="store-text">
-                  <small>Disponible en</small>
-                  <strong>Google Play</strong>
-                </span>
-              </a>
-              <a href="https://www.apple.com/app-store/" class="store-btn store-btn--outline">
-                <i class="mdi mdi-apple store-icon"></i>
-                <span class="store-text">
-                  <small>Descarga en</small>
-                  <strong>App Store</strong>
-                </span>
-              </a>
+            <div class="store-coming-soon">
+              <span class="coming-badge">Próximamente en iOS y Android</span>
             </div>
           </div>
         </div>
@@ -368,9 +341,9 @@ import Layout from "../layouts/Layout.astro";
           <div class="footer-col">
             <span class="footer-col-title">Legal</span>
             <nav class="footer-links">
-              <a href="/terms-of-use">Términos de uso</a>
-              <a href="/privacy-policy">Política de privacidad</a>
-              <a href="/delete-account">Eliminar cuenta</a>
+              <a href="/docs/terms-of-use">Términos de uso</a>
+              <a href="/docs/privacy-policy">Política de privacidad</a>
+              <a href="/docs/delete-account">Eliminar cuenta</a>
             </nav>
           </div>
           <div class="footer-col">
@@ -541,6 +514,20 @@ h1 {
   margin: 0;
 }
 
+/* Próximamente */
+.store-coming-soon {
+  margin-bottom: 18px;
+}
+.coming-badge {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid rgba(245,166,35,.4);
+  border-radius: 8px;
+  color: #F5A623;
+  font-size: 0.9rem;
+  letter-spacing: 0.03em;
+}
+
 /* Store buttons */
 .store-row {
   display: flex;
@@ -704,7 +691,7 @@ h2 {
 
 /* ── PROBLEMA ── */
 .problema { border-top: 1px solid rgba(255,255,255,.06); }
-.problema-inner { max-width: 1000px; }
+.problema-inner { max-width: 1180px; }
 .problema-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
@@ -1122,8 +1109,7 @@ h2 {
       .from('.hero-label',   { y: 36, opacity: 0, duration: 0.6 }, 0.2)
       .from('h1',            { y: 44, opacity: 0, duration: 0.75 }, 0.35)
       .from('.hero-lead',    { y: 28, opacity: 0, duration: 0.6 }, 0.52)
-      .from('.store-row',    { y: 22, opacity: 0, duration: 0.55 }, 0.64)
-      .from('.hero-footnote',{ y: 16, opacity: 0, duration: 0.5 }, 0.72)
+      .from('.store-coming-soon', { y: 22, opacity: 0, duration: 0.55 }, 0.64)
       .from('.phone-wrap',   { y: 70, opacity: 0, duration: 1.0, ease: 'power2.out' }, 0.28);
 
     /* 2. Secciones: tarjetas stagger desde abajo */
