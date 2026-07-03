@@ -1,0 +1,1071 @@
+---
+// Demo animada del teléfono: 8 pantallas de la app en loop automático,
+// con navegación manual (dots + flechas) y pausa al hacer hover.
+// Los colores internos de las pantallas son los tokens reales de la app,
+// NO los de la landing — no unificar.
+---
+
+<div class="phone-demo" id="phone-demo">
+  <div class="phone-wrap" id="pd-wrap">
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen" id="pd-screen" style="--sb:#FFFFFF">
+
+        <div class="statusbar">
+          <span>20:43</span>
+          <svg width="54" height="12" viewBox="0 0 54 12" fill="currentColor" aria-hidden="true">
+            <rect x="0" y="7.2" width="2.7" height="3.4" rx="1"></rect>
+            <rect x="4.1" y="5.3" width="2.7" height="5.3" rx="1"></rect>
+            <rect x="8.2" y="3.2" width="2.7" height="7.4" rx="1"></rect>
+            <rect x="12.3" y="1.1" width="2.7" height="9.5" rx="1"></rect>
+            <g fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">
+              <path d="M20.6 4.7a8.4 8.4 0 0110.2 0"></path>
+              <path d="M22.8 7.4a4.9 4.9 0 015.8 0"></path>
+            </g>
+            <circle cx="25.7" cy="10" r="1.25"></circle>
+            <rect x="36.6" y="1.7" width="14.2" height="8.6" rx="2.6" fill="none" stroke="currentColor" stroke-width="1.1" opacity=".45"></rect>
+            <rect x="38.1" y="3.2" width="9.2" height="5.6" rx="1.5"></rect>
+            <path d="M52.5 4.5v3" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".45"></path>
+          </svg>
+        </div>
+
+        <!-- ============ 1 · HOME ============ -->
+        <div class="panel active" id="panel-home">
+          <div class="home-header">
+            <div class="home-top s s1">
+              <div class="greet"><div class="avatar"></div>Hola, Alejandro</div>
+              <div class="days-badge">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2.5"></rect><path d="M3 9.5h18M8 3v4M16 3v4"></path></svg>
+                Faltan 2 días
+              </div>
+            </div>
+            <div class="ring-wrap s s2">
+              <svg width="128" height="128" viewBox="0 0 128 128">
+                <circle cx="64" cy="64" r="52" fill="none" stroke="#3d5b78" stroke-width="10"></circle>
+                <circle id="ring-progress" cx="64" cy="64" r="52" fill="none" stroke="#22c55e" stroke-width="10" stroke-linecap="round" transform="rotate(-90 64 64)" stroke-dasharray="326.73" stroke-dashoffset="326.73"></circle>
+              </svg>
+              <div class="ring-center">
+                <span class="ring-num"><span id="ring-num">0</span><small>%</small></span>
+                <span class="ring-cap">SÓLIDO</span>
+              </div>
+            </div>
+            <div class="affinity-row s s3">
+              <div class="affinity-label">Afinidad para Contabilidad</div>
+              <div class="affinity-up">▲ +23%</div>
+            </div>
+            <div class="career-pill s s4">
+              Contabilidad
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4"><path d="M6 9l6 6 6-6"></path></svg>
+            </div>
+          </div>
+          <div class="home-body">
+            <div class="ai-card s s5">
+              <svg class="wm" width="76" height="76" viewBox="0 0 24 24" fill="#1e3a8a"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path></svg>
+              <div class="ai-tag">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1c2a52" stroke-width="2.3"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path></svg>
+                Hoy te conviene practicar
+              </div>
+              <div class="ai-topic">Razonamiento Matemático</div>
+              <div class="ai-desc">Razonamiento Matemático es tu punto crítico actual.</div>
+              <button class="ai-btn">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="#fff"><path d="M7 4l13 8-13 8z"></path></svg>
+                Practicar ahora
+              </button>
+            </div>
+          </div>
+          <div class="navbar">
+            <div class="nav-item on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4.5 10.4L12 4l7.5 6.4V19a1.6 1.6 0 01-1.6 1.6H6.1A1.6 1.6 0 014.5 19z"></path><path d="M9.6 20.4v-5h4.8v5"></path></svg>Home</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path></svg>Práctica</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 6c-2-1.4-4.7-1.4-8-.5V19c3.3-.9 6-.9 8 .5 2-1.4 4.7-1.4 8-.5V5.5c-3.3-.9-6-.9-8 .5z"></path><path d="M12 6v13.5"></path></svg>Exámenes</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"></path><path d="M15 7h6v6"></path></svg>Progreso</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg>Perfil</div>
+          </div>
+        </div>
+
+        <!-- ============ 2 · PRÁCTICA ============ -->
+        <div class="panel" id="panel-practica">
+          <div class="top-navy">Práctica</div>
+          <div class="prac-body">
+            <div class="prac-h1 s s1">Práctica diaria</div>
+            <div class="prac-sub s s1">Elige una categoría o deja que el sistema adapte tu sesión.</div>
+            <div class="cat-label s s2">CATEGORÍAS</div>
+            <div class="cat-grid">
+              <div class="cat reco s s2">
+                <span class="reco-badge">RECOMENDADO</span>
+                <div class="cat-ic" style="background:#E3EDFF;">
+                  <svg width="15" height="15" viewBox="0 0 24 24"><path fill="#3b82f6" d="M7 2h10a2.5 2.5 0 012.5 2.5v15A2.5 2.5 0 0117 22H7a2.5 2.5 0 01-2.5-2.5v-15A2.5 2.5 0 017 2z"></path><rect x="7.2" y="4.8" width="9.6" height="3.8" rx="1" fill="#E3EDFF"></rect><g fill="#E3EDFF"><circle cx="8.7" cy="12.1" r="1.1"></circle><circle cx="12" cy="12.1" r="1.1"></circle><circle cx="15.3" cy="12.1" r="1.1"></circle><circle cx="8.7" cy="15.5" r="1.1"></circle><circle cx="12" cy="15.5" r="1.1"></circle><circle cx="15.3" cy="15.5" r="1.1"></circle><circle cx="8.7" cy="18.9" r="1.1"></circle><circle cx="12" cy="18.9" r="1.1"></circle><circle cx="15.3" cy="18.9" r="1.1"></circle></g></svg>
+                </div>
+                <div class="cat-name">Matemáticas</div>
+                <div class="cat-bar"><div class="bar"><i style="width:25%;background:#3b82f6;"></i></div><span class="cat-pct">25%</span></div>
+              </div>
+              <div class="cat s s3">
+                <div class="cat-ic" style="background:#F4E9FE;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="1.9"><path d="M12 3.5c-5 0-9 3.3-9 7.4 0 1.9.9 3.6 2.3 4.9-.1 1.2-.6 2.5-1.6 3.5 1.8-.1 3.4-.7 4.5-1.4 1.2.3 2.5.5 3.8.5 5 0 9-3.3 9-7.5s-4-7.4-9-7.4z"></path><g fill="#a855f7" stroke="none"><circle cx="8.3" cy="11" r="1.05"></circle><circle cx="12" cy="11" r="1.05"></circle><circle cx="15.7" cy="11" r="1.05"></circle></g></svg>
+                </div>
+                <div class="cat-name">Comunicación</div>
+                <div class="cat-bar"><div class="bar"><i style="width:25%;background:#a855f7;"></i></div><span class="cat-pct">25%</span></div>
+              </div>
+              <div class="cat s s4">
+                <div class="cat-ic" style="background:#E7F8EC;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="1.9"><path d="M9.5 3v6L4.5 19a1.8 1.8 0 001.7 2.5h11.6a1.8 1.8 0 001.7-2.5L14.5 9V3"></path><path d="M8 3h8"></path><path d="M7.3 14.5h9.4"></path></svg>
+                </div>
+                <div class="cat-name">Ciencias</div>
+                <div class="cat-bar"><div class="bar"><i style="width:25%;background:#22c55e;"></i></div><span class="cat-pct">25%</span></div>
+              </div>
+              <div class="cat s s5">
+                <div class="cat-ic" style="background:#FEEFE3;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="#f97316"><path d="M11.2 5.3C9.1 4.1 6.4 3.8 3.3 4.5c-.5.1-.8.5-.8 1v12.9c0 .6.6 1.1 1.2 1 2.6-.5 5-.2 7.5 1.2V5.3z"></path><path d="M12.8 5.3c2.1-1.2 4.8-1.5 7.9-.8.5.1.8.5.8 1v12.9c0 .6-.6 1.1-1.2 1-2.6-.5-5-.2-7.5 1.2V5.3z"></path></svg>
+                </div>
+                <div class="cat-name">Humanidades</div>
+                <div class="cat-bar"><div class="bar"><i style="width:25%;background:#f4511e;"></i></div><span class="cat-pct">25%</span></div>
+              </div>
+              <div class="cat s s6">
+                <div class="cat-ic" style="background:#FEF3DF;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="1.9"><circle cx="6" cy="5.5" r="2.1"></circle><circle cx="18" cy="5.5" r="2.1"></circle><circle cx="12" cy="18.5" r="2.1"></circle><path d="M6 7.6v1a4.5 4.5 0 004.5 4.5h3A4.5 4.5 0 0018 8.6v-1"></path><path d="M12 13.1v3.3"></path></svg>
+                </div>
+                <div class="cat-name">Raz. Matemático</div>
+                <div class="cat-bar"><div class="bar"><i style="width:25%;background:#f59e0b;"></i></div><span class="cat-pct">25%</span></div>
+              </div>
+              <div class="cat s s7">
+                <div class="cat-ic" style="background:#E0F7FB;">
+                  <svg width="15" height="15" viewBox="0 0 24 24"><rect x="4.5" y="2.5" width="15" height="19" rx="3" fill="#06b6d4"></rect><g stroke="#E0F7FB" stroke-width="1.8" stroke-linecap="round"><path d="M8.3 8h7.4M8.3 12h7.4M8.3 16h4.6"></path></g></svg>
+                </div>
+                <div class="cat-name">Raz. Verbal</div>
+                <div class="cat-bar"><div class="bar"><i style="width:100%;background:#06b6d4;"></i></div><span class="cat-pct">100%</span></div>
+              </div>
+            </div>
+            <div class="adapt-card s s8">
+              <svg class="wm" width="72" height="72" viewBox="0 0 26 24" fill="none" stroke="#1e3a8a" stroke-width="1.7" stroke-linecap="round"><path d="M6 4v5a5 5 0 0010 0V4"></path><path d="M11 14v2.5a5 5 0 0010 0V14"></path><circle cx="21" cy="11.4" r="2.4"></circle><circle cx="6" cy="2.9" r="1.1"></circle><circle cx="16" cy="2.9" r="1.1"></circle></svg>
+              <div class="adapt-tag">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1c2a52" stroke-width="2.3"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path></svg>
+                Sesión adaptativa
+              </div>
+              <div class="adapt-desc">Refuerza tus temas más débiles con preguntas adaptadas a tu nivel.</div>
+              <button class="adapt-btn">Configurar sesión</button>
+            </div>
+          </div>
+          <div class="navbar">
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4.5 10.4L12 4l7.5 6.4V19a1.6 1.6 0 01-1.6 1.6H6.1A1.6 1.6 0 014.5 19z"></path><path d="M9.6 20.4v-5h4.8v5"></path></svg>Home</div>
+            <div class="nav-item on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path></svg>Práctica</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 6c-2-1.4-4.7-1.4-8-.5V19c3.3-.9 6-.9 8 .5 2-1.4 4.7-1.4 8-.5V5.5c-3.3-.9-6-.9-8 .5z"></path><path d="M12 6v13.5"></path></svg>Exámenes</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"></path><path d="M15 7h6v6"></path></svg>Progreso</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg>Perfil</div>
+          </div>
+        </div>
+
+        <!-- ============ 3 · PREGUNTA ============ -->
+        <div class="panel" id="panel-question">
+          <div class="q-top s s1">
+            <span class="q-x">✕</span>
+            <span class="q-timer" id="q-timer">02:55:20</span>
+            <span class="q-count">1/90</span>
+            <span class="q-all">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#2647a8" stroke-width="2.2"><rect x="3" y="3" width="7" height="7" rx="1.5"></rect><rect x="14" y="3" width="7" height="7" rx="1.5"></rect><rect x="3" y="14" width="7" height="7" rx="1.5"></rect><rect x="14" y="14" width="7" height="7" rx="1.5"></rect></svg>
+              Ver todas
+            </span>
+          </div>
+          <div class="q-numrow s s2">
+            <span class="q-num">Pregunta 1 de 90</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3f4756" stroke-width="1.9"><path d="M5 21V4"></path><path d="M5 4h12l-2.5 4L17 12H5"></path></svg>
+          </div>
+          <span class="q-pill s s3">RAZONAMIENTO MATEMÁTICO</span>
+          <div class="q-math s s4">
+            <svg viewBox="0 0 268 47" role="img" aria-label="Calcular: A igual a la raíz anidada de 5 operador raíz de 5 operador raíz de 5, si a operador b es igual a a menos 4 b al cuadrado">
+              <g font-family="Georgia,'Times New Roman',serif" font-size="13" fill="#12161f">
+                <text x="0" y="21">Calcular:</text>
+                <text x="56" y="21" font-style="italic">A</text>
+                <text x="68" y="21">=</text>
+                <text x="94" y="21">5 ⊛</text>
+                <text x="130" y="21">5 ⊛</text>
+                <text x="166" y="21">5 ⊛ ⋯</text>
+                <text x="208" y="21">Si: <tspan font-style="italic">a</tspan> ⊛ <tspan font-style="italic">b</tspan> =</text>
+                <text x="0" y="42"><tspan font-style="italic">a</tspan> − 4<tspan font-style="italic">b</tspan><tspan dy="-4.5" font-size="9">2</tspan></text>
+              </g>
+              <g stroke="#12161f" stroke-width="1.15" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M80 16.5 l2 -1.2 l3.1 7.2 L89.6 4 H202"></path>
+                <path d="M116 17 l2 -1.2 l3 6.7 L125.4 7 H199.5"></path>
+                <path d="M152 17.5 l1.9 -1.2 l2.8 6.2 L161 10 H197"></path>
+              </g>
+            </svg>
+          </div>
+          <div class="opt s s5"><div class="opt-letter">A</div><div class="opt-val">8</div></div>
+          <div class="opt s s5"><div class="opt-letter">B</div><div class="opt-val">9</div></div>
+          <div class="opt s s6"><div class="opt-letter">C</div><div class="opt-val">10</div></div>
+          <div class="opt s s6"><div class="opt-letter">D</div><div class="opt-val">5</div></div>
+          <div class="opt s s7" id="opt-e"><div class="opt-letter">E</div><div class="opt-val">1</div></div>
+          <div class="q-footer s s8">
+            <div class="q-nav">
+              <div class="pill-btn">‹ Anterior</div>
+              <span class="q-flag"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3f4756" stroke-width="1.9"><path d="M5 21V4"></path><path d="M5 4h12l-2.5 4L17 12H5"></path></svg></span>
+              <div class="pill-btn next" id="next-btn">Siguiente ›</div>
+            </div>
+            <button class="submit-btn">Enviar examen (61/90)</button>
+          </div>
+        </div>
+
+        <!-- ============ 4 · RESULTADOS ============ -->
+        <div class="panel" id="panel-results">
+          <div class="green-head">Resultados</div>
+          <div class="res-body">
+            <div class="res-card s s1">
+              <div class="res-eyebrow">RESULTADO DEL SIMULACRO</div>
+              <div class="res-score" id="res-num">0</div>
+              <div class="res-meta">puntos · Ciencias Sociales y Educación</div>
+              <div class="res-up" id="res-up">
+                <span style="margin-top:1px;">▲</span>
+                <span>Subiste 366 pts vs tu sesión anterior. Buen progreso.</span>
+              </div>
+            </div>
+            <div class="res-card s s2">
+              <div class="tutor-lead">Alejandro, tu fuerte fue Psicología (3/3). El reto: Ecología (1/3).</div>
+              <div class="tutor-row good">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1ea24a" stroke-width="2.3"><path d="M12 19V5M6 11l6-6 6 6"></path></svg>
+                Mejor tema: Psicología (3/3).
+              </div>
+              <div class="tutor-row">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#f97316" stroke-width="2.1"><circle cx="12" cy="12" r="9"></circle><path d="M12 7.5v5.5"></path><circle cx="12" cy="16.6" r=".4" fill="#f97316"></circle></svg>
+                Punto crítico: Ecología (1/3).
+              </div>
+              <button class="tutor-btn">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.3"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path></svg>
+                Practicar Ecología
+              </button>
+              <button class="tutor-btn ghost">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="1.9"><path d="M2 12s3.5-6 10-6 10 6 10 6-3.5 6-10 6-10-6-10-6z"></path><circle cx="12" cy="12" r="2.6"></circle></svg>
+                Revisar este examen
+              </button>
+            </div>
+          </div>
+          <div class="back-bar">←&nbsp; Volver a exámenes</div>
+        </div>
+
+        <!-- ============ 5 · PLAN DE ESTUDIO ============ -->
+        <div class="panel" id="panel-plan">
+          <div class="green-head">Resultados</div>
+          <div class="plan-body">
+            <div class="plan-card s s1">
+              <div class="plan-title">
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#0f9d8c" stroke-width="1.9"><path d="M12 4L2 9l10 5 10-5-10-5z"></path><path d="M6 11.5v4.5c0 1.4 12 1.4 12 0v-4.5"></path></svg>
+                <b>Tu plan de estudio</b>
+                <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#3f4756" stroke-width="2.2"><path d="M6 15l6-6 6 6"></path></svg>
+              </div>
+              <div class="plan-quote">Llegaste a 77% con tu Razonamiento Verbal en nivel experto; ahora mantén ese ritmo llevando esa disciplina a los temas donde recién empiezas — Álgebra, Biología y Geometría tienen el mayor potencial para elevar tu puntaje en las próximas semanas.</div>
+            </div>
+            <div class="plan-p s s2">Sacaste 418 de 540 puntos (77%) en este simulacro. Tu desempeño refleja fortaleza en áreas verbales, pero hay espacio significativo de mejora en matemáticas, ciencias y humanidades.</div>
+            <div class="agenda-row s s3"><b>Agenda semanal</b><span>3 BLOQUES</span></div>
+            <div class="block s s4">
+              <div class="block-days"><span class="day on">L</span><span class="day on">M</span><span class="day">X</span><span class="day">J</span><span class="day">V</span><span class="day">S</span><span class="day">D</span></div>
+              <div class="block-row">
+                <div class="block-ic" style="background:#FDEFD8;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><rect x="5" y="3" width="14" height="18" rx="2.5"></rect><path d="M8.5 7.5h7M8.5 12h.01M12 12h.01M15.5 12h.01M8.5 16h.01M12 16h.01M15.5 16h.01"></path></svg>
+                </div>
+                <div>
+                  <div class="block-name">Álgebra</div>
+                  <div class="block-sub">Ecuaciones de primer y segundo grado</div>
+                </div>
+                <div class="block-n"><b>15</b><span>PREG.</span></div>
+              </div>
+              <div class="block-underline"></div>
+            </div>
+            <div class="block s s5">
+              <div class="block-days"><span class="day">L</span><span class="day">M</span><span class="day on">X</span><span class="day on">J</span><span class="day">V</span><span class="day">S</span><span class="day">D</span></div>
+              <div class="block-row">
+                <div class="block-ic" style="background:#E3F6E9;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M6 20C6 10 12 5 20 4c0 9-4 15-14 16z"></path><path d="M6 20c2-5 5-8 9-10"></path></svg>
+                </div>
+                <div>
+                  <div class="block-name">Biología</div>
+                  <div class="block-sub">Citología y genética básica</div>
+                </div>
+                <div class="block-n"><b>12</b><span>PREG.</span></div>
+              </div>
+              <div class="block-underline"></div>
+            </div>
+            <div class="block s s6">
+              <div class="block-days"><span class="day">L</span><span class="day">M</span><span class="day">X</span><span class="day">J</span><span class="day on">V</span><span class="day on">S</span><span class="day">D</span></div>
+              <div class="block-row">
+                <div class="block-ic" style="background:#E3F6E9;">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2"><path d="M8.5 3L2.5 13h12L8.5 3z"></path><circle cx="16.5" cy="16.5" r="4.5"></circle></svg>
+                </div>
+                <div>
+                  <div class="block-name">Geometría</div>
+                  <div class="block-sub">Áreas, perímetros y semejanza</div>
+                </div>
+                <div class="block-n"><b>18</b><span>PREG.</span></div>
+              </div>
+            </div>
+          </div>
+          <div class="back-bar">←&nbsp; Volver a exámenes</div>
+        </div>
+
+        <!-- ============ 6 · PROGRESO ============ -->
+        <div class="panel" id="panel-progreso">
+          <div class="top-navy">Mi Progreso</div>
+          <div class="prog-body">
+            <div class="prog-card s s1">
+              <div class="prog-label">MAPA DE DOMINIO · MARKOV</div>
+              <div class="radar-wrap">
+                <svg viewBox="0 0 260 186">
+                  <polygon points="130,20 198.5,69.8 172.3,150.2 87.7,150.2 61.5,69.8" fill="#F0EDE3" stroke="#D8D4C6" stroke-width="1.2"></polygon>
+                  <g stroke="#DDD9CC" stroke-width="1">
+                    <line x1="130" y1="92" x2="130" y2="20"></line>
+                    <line x1="130" y1="92" x2="198.5" y2="69.8"></line>
+                    <line x1="130" y1="92" x2="172.3" y2="150.2"></line>
+                    <line x1="130" y1="92" x2="87.7" y2="150.2"></line>
+                    <line x1="130" y1="92" x2="61.5" y2="69.8"></line>
+                  </g>
+                  <polygon id="radar-poly" points="130,67.5 157.4,83.1 144.4,111.8 117.3,109.5 86.8,78" fill="rgba(37,99,235,.12)" stroke="#1e3a8a" stroke-width="2" stroke-linejoin="round"></polygon>
+                  <circle class="rdot" style="--rd:.25s" cx="130" cy="67.5" r="5" fill="#ef4444"></circle>
+                  <circle class="rdot" style="--rd:.33s" cx="157.4" cy="83.1" r="5" fill="#ef4444"></circle>
+                  <circle class="rdot" style="--rd:.41s" cx="144.4" cy="111.8" r="5" fill="#ef4444"></circle>
+                  <circle class="rdot" style="--rd:.49s" cx="117.3" cy="109.5" r="5" fill="#ef4444"></circle>
+                  <circle class="rdot" style="--rd:.57s" cx="86.8" cy="78" r="5.4" fill="#2563eb"></circle>
+                  <g font-size="9.5" font-weight="600" fill="#3f4756" font-family="inherit">
+                    <text x="130" y="12" text-anchor="middle">Matemáticas</text>
+                    <text x="203" y="66" text-anchor="start">Comunicación</text>
+                    <text x="176" y="166" text-anchor="middle">Ciencias</text>
+                    <text x="84" y="166" text-anchor="middle">Humanidades</text>
+                    <text x="57" y="64" text-anchor="end">Aptitud</text>
+                  </g>
+                </svg>
+              </div>
+              <div class="radar-eval">17/17 temas evaluados</div>
+              <div class="tabs">
+                <span class="tab on">Matemáticas</span>
+                <span class="tab">Comunicación</span>
+                <span class="tab">Ciencias</span>
+              </div>
+              <div class="topic-row"><span class="topic-dot"></span><span class="topic-name">Álgebra</span><span class="topic-state">Novato</span></div>
+              <div class="topic-row"><span class="topic-dot"></span><span class="topic-name">Aritmética</span><span class="topic-state">Novato</span></div>
+              <div class="topic-row"><span class="topic-dot"></span><span class="topic-name">Geometría</span><span class="topic-state">Novato</span></div>
+              <div class="topic-row"><span class="topic-dot"></span><span class="topic-name">Trigonometría</span><span class="topic-state">Novato</span></div>
+            </div>
+            <div class="prog-duo">
+              <div class="duo-card f s s3">
+                <div class="duo-tag">Fortaleza</div>
+                <div class="duo-name">Aptitud</div>
+                <div class="duo-sub">Competente · 63%</div>
+              </div>
+              <div class="duo-card c s s4">
+                <div class="duo-tag">Punto Crítico</div>
+                <div class="duo-name">Humanidades</div>
+                <div class="duo-sub">Novato · 25%</div>
+              </div>
+            </div>
+          </div>
+          <div class="navbar">
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4.5 10.4L12 4l7.5 6.4V19a1.6 1.6 0 01-1.6 1.6H6.1A1.6 1.6 0 014.5 19z"></path><path d="M9.6 20.4v-5h4.8v5"></path></svg>Home</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path></svg>Práctica</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 6c-2-1.4-4.7-1.4-8-.5V19c3.3-.9 6-.9 8 .5 2-1.4 4.7-1.4 8-.5V5.5c-3.3-.9-6-.9-8 .5z"></path><path d="M12 6v13.5"></path></svg>Exámenes</div>
+            <div class="nav-item on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"></path><path d="M15 7h6v6"></path></svg>Progreso</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg>Perfil</div>
+          </div>
+        </div>
+
+        <!-- ============ 7 · TEST VOCACIONAL ============ -->
+        <div class="panel" id="panel-quiz">
+          <div class="quiz-head">
+            <div class="quiz-toprow s s1">
+              <span class="quiz-x">✕</span>
+              <span class="quiz-phase">Fase 1 · descubriendo tu área</span>
+            </div>
+            <div class="quiz-progress s s1">
+              <div class="qp"><i style="width:100%;"></i></div>
+              <div class="qp"><i style="width:0%;"></i></div>
+            </div>
+            <div class="quiz-title s s2">¿Qué actividad disfrutas más en tu tiempo libre?</div>
+          </div>
+          <div class="quiz-body">
+            <div class="qopt s s3">
+              <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#0f9d8c" fill-rule="evenodd" d="M5.5 3h13A2.5 2.5 0 0121 5.5v13a2.5 2.5 0 01-2.5 2.5h-13A2.5 2.5 0 013 18.5v-13A2.5 2.5 0 015.5 3z M10.5 7.5h3v3h3v3h-3v3h-3v-3h-3v-3h3v-3z"></path></svg>
+              <span class="qopt-txt">Cuidar o ayudar a otras personas</span>
+              <span class="qradio"></span>
+            </div>
+            <div class="qopt s s4" id="qopt-math">
+              <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#0f9d8c" d="M7 2h10a2.5 2.5 0 012.5 2.5v15A2.5 2.5 0 0117 22H7a2.5 2.5 0 01-2.5-2.5v-15A2.5 2.5 0 017 2z"></path><rect x="7.2" y="4.8" width="9.6" height="3.8" rx="1" fill="#fff"></rect><g fill="#fff"><circle cx="8.7" cy="12.1" r="1.1"></circle><circle cx="12" cy="12.1" r="1.1"></circle><circle cx="15.3" cy="12.1" r="1.1"></circle><circle cx="8.7" cy="15.5" r="1.1"></circle><circle cx="12" cy="15.5" r="1.1"></circle><circle cx="15.3" cy="15.5" r="1.1"></circle><circle cx="8.7" cy="18.9" r="1.1"></circle><circle cx="12" cy="18.9" r="1.1"></circle><circle cx="15.3" cy="18.9" r="1.1"></circle></g></svg>
+              <span class="qopt-txt">Resolver problemas matemáticos o técnicos</span>
+              <span class="qradio"></span>
+            </div>
+            <div class="qopt s s5">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#0f9d8c"><path d="M11.2 5.3C9.1 4.1 6.4 3.8 3.3 4.5c-.5.1-.8.5-.8 1v12.9c0 .6.6 1.1 1.2 1 2.6-.5 5-.2 7.5 1.2V5.3z"></path><path d="M12.8 5.3c2.1-1.2 4.8-1.5 7.9-.8.5.1.8.5.8 1v12.9c0 .6-.6 1.1-1.2 1-2.6-.5-5-.2-7.5 1.2V5.3z"></path></svg>
+              <span class="qopt-txt">Leer, escribir o debatir ideas</span>
+              <span class="qradio"></span>
+            </div>
+            <div class="qopt s s6">
+              <svg width="18" height="18" viewBox="0 0 24 24"><path fill="#0f9d8c" d="M20.5 3.4C11 4.1 5.2 9 5.2 17.2c0 1.3.2 2.4.5 3.3 1 .3 2 .5 3.1.5C17.6 21 21.4 13.5 20.5 3.4z"></path><path d="M6 20.2C7.9 15.2 11.3 11.2 15.8 8.4" stroke="#fff" stroke-width="1.5" fill="none" stroke-linecap="round"></path></svg>
+              <span class="qopt-txt">Trabajar al aire libre con la naturaleza</span>
+              <span class="qradio"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ 8 · MATCH ============ -->
+        <div class="panel" id="panel-match">
+          <div class="match-header">
+            <svg class="spark spark-1" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 8 8 2-8 2-2 8-2-8-8-2 8-2z"></path></svg>
+            <svg class="spark spark-2" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 8 8 2-8 2-2 8-2-8-8-2 8-2z"></path></svg>
+            <svg class="spark spark-3" width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2 8 8 2-8 2-2 8-2-8-8-2 8-2z"></path></svg>
+            <div class="match-toprow s s1">
+              <span class="back-pill">‹ Mi Perfil</span>
+              <span class="match-toptitle">Tus carreras ideales</span>
+            </div>
+            <div class="star-ic">
+              <svg width="19" height="19" viewBox="0 0 24 24" fill="#1c2a52"><path d="M12 2.5l2.7 6.6 7.1.6-5.4 4.7 1.6 7L12 17.7l-6 3.7 1.6-7L2.2 9.7l7.1-.6z"></path></svg>
+            </div>
+            <div class="match-title s s2">¡Encontramos tu mejor match!</div>
+            <div class="match-sub s s2">Estas carreras son las más afines a ti</div>
+          </div>
+          <div class="match-card s s3">
+            <div class="crown">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#fff"><path d="M3.2 7.4l3.9 3.4L12 4.8l4.9 6 3.9-3.4-1.5 8.2H4.7z"></path><rect x="4.7" y="17.1" width="14.6" height="2.4" rx="1.2"></rect></svg>
+            </div>
+            <div class="career-name">Ingeniería de Sistemas</div>
+            <div class="career-cat">Interés en Ingeniería</div>
+            <div class="seg-row" id="seg-row">
+              <div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div><div class="seg"></div>
+            </div>
+            <div class="match-pct"><b><span id="match-num">0</span>% afín</b> · match muy alto</div>
+            <button class="explore-btn">Explorar carrera <span style="font-weight:400;">›</span></button>
+          </div>
+          <div class="also-wrap">
+            <div class="also-label s s5">TAMBIÉN AFINES</div>
+            <div class="also-row s s5">
+              <span class="also-num">2</span>
+              Ingeniería Civil
+              <span class="also-pct">20% <span style="color:#9aa0ab;font-weight:400;">›</span></span>
+            </div>
+            <div class="match-actions">
+              <button class="match-cta s s6">Ver todas las carreras</button>
+              <button class="match-cta ghost s s7">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#1e3a8a" stroke-width="2.2"><path d="M21 12a9 9 0 11-2.6-6.4"></path><path d="M21 3v6h-6"></path></svg>
+                Repetir quiz
+              </button>
+            </div>
+          </div>
+          <div class="navbar">
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M4.5 10.4L12 4l7.5 6.4V19a1.6 1.6 0 01-1.6 1.6H6.1A1.6 1.6 0 014.5 19z"></path><path d="M9.6 20.4v-5h4.8v5"></path></svg>Home</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"></path></svg>Práctica</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 6c-2-1.4-4.7-1.4-8-.5V19c3.3-.9 6-.9 8 .5 2-1.4 4.7-1.4 8-.5V5.5c-3.3-.9-6-.9-8 .5z"></path><path d="M12 6v13.5"></path></svg>Exámenes</div>
+            <div class="nav-item"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 17l6-6 4 4 8-8"></path><path d="M15 7h6v6"></path></svg>Progreso</div>
+            <div class="nav-item on"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4 4-6 8-6s8 2 8 6"></path></svg>Perfil</div>
+          </div>
+        </div>
+
+      </div><!-- /screen -->
+    </div><!-- /phone -->
+  </div><!-- /phone-wrap -->
+
+  <div class="scene-meta">
+    <div class="cap" id="pd-cap">Tu afinidad, en vivo</div>
+    <div class="scene-nav">
+      <button class="arrow" id="pd-prev" aria-label="Pantalla anterior">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M15 18l-6-6 6-6"></path></svg>
+      </button>
+      <div class="dots" id="pd-dots">
+        <button class="dot-i on" aria-label="Ver pantalla 1"></button>
+        <button class="dot-i" aria-label="Ver pantalla 2"></button>
+        <button class="dot-i" aria-label="Ver pantalla 3"></button>
+        <button class="dot-i" aria-label="Ver pantalla 4"></button>
+        <button class="dot-i" aria-label="Ver pantalla 5"></button>
+        <button class="dot-i" aria-label="Ver pantalla 6"></button>
+        <button class="dot-i" aria-label="Ver pantalla 7"></button>
+        <button class="dot-i" aria-label="Ver pantalla 8"></button>
+      </div>
+      <button class="arrow" id="pd-next" aria-label="Pantalla siguiente">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M9 6l6 6-6 6"></path></svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  /* Tokens reales de la app — scoped al componente, no tocan la landing */
+  .phone-demo {
+    --navy: #1e3a8a;
+    --gold: #f5a623;
+    --teal: #0f9d8c;
+    --green: #1ea24a;
+    --green-deep: #178f3f;
+    --red: #ef4444;
+    --screen-bg: #f8f7f0;
+    --muted: #6b7280;
+    --border: #e7e4da;
+    --shadow: rgba(0, 0, 0, 0.55);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  }
+  .phone-demo svg { stroke-linecap: round; stroke-linejoin: round; }
+  .phone-demo button { font-family: inherit; cursor: default; }
+
+  .phone-wrap { position: relative; display: flex; justify-content: center; }
+
+  .phone {
+    position: relative;
+    width: min(312px, 78vw);
+    aspect-ratio: 9/19.4;
+    background: #0b0c10;
+    border-radius: 48px;
+    padding: 12px;
+    box-shadow: 0 40px 80px -24px var(--shadow), 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+    z-index: 2;
+  }
+  .notch {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 98px;
+    height: 25px;
+    background: #0b0c10;
+    border-radius: 14px;
+    z-index: 7;
+  }
+  .screen {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: var(--screen-bg);
+    border-radius: 36px;
+    overflow: hidden;
+  }
+  .statusbar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 44px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding: 0 24px 6px;
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--sb);
+    z-index: 6;
+    transition: color 0.35s ease;
+    pointer-events: none;
+  }
+  .statusbar svg { display: block; }
+
+  /* Paneles */
+  .panel {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(10px) scale(0.985);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+  }
+  .panel.active { opacity: 1; transform: translateY(0) scale(1); }
+
+  /* Entradas escalonadas */
+  .s { opacity: 0; }
+  .panel.active .s { animation: rise 0.55s cubic-bezier(0.22, 0.7, 0.3, 1) both; }
+  .panel.active .s1 { animation-delay: 0.05s; } .panel.active .s2 { animation-delay: 0.12s; }
+  .panel.active .s3 { animation-delay: 0.19s; } .panel.active .s4 { animation-delay: 0.26s; }
+  .panel.active .s5 { animation-delay: 0.33s; } .panel.active .s6 { animation-delay: 0.40s; }
+  .panel.active .s7 { animation-delay: 0.47s; } .panel.active .s8 { animation-delay: 0.54s; }
+  .panel.active .s9 { animation-delay: 0.61s; }
+  @keyframes rise { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+
+  /* Barra de navegación inferior (compartida) */
+  .navbar {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 9px 4px 16px;
+    background: #fff;
+    border-top: 1px solid var(--border);
+  }
+  .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 8.5px; color: #8a8f9b; font-weight: 600; }
+  .nav-item svg { stroke: #8a8f9b; stroke-width: 1.8; }
+  .nav-item.on { color: var(--navy); font-weight: 700; }
+  .nav-item.on svg { stroke: var(--navy); }
+
+  .top-navy { background: var(--navy); color: #fff; text-align: center; padding: 50px 0 13px; font-size: 14px; font-weight: 700; }
+  .back-bar {
+    margin-top: auto;
+    background: var(--screen-bg);
+    border-top: 1px solid #ece9df;
+    text-align: center;
+    padding: 12px 0 16px;
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--navy);
+  }
+
+  /* ---------- HOME ---------- */
+  .home-header { background: var(--navy); padding: 48px 16px 18px; border-radius: 0 0 28px 28px; color: #fff; }
+  .home-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .greet { display: flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 700; }
+  .avatar { width: 28px; height: 28px; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #5b6c8c, #2b3a58); border: 1px solid rgba(255, 255, 255, 0.25); }
+  .days-badge { display: flex; align-items: center; gap: 5px; font-size: 10.5px; font-weight: 700; background: rgba(255, 255, 255, 0.16); padding: 6px 11px; border-radius: 999px; }
+  .ring-wrap { position: relative; display: flex; justify-content: center; margin: 2px 0 6px; }
+  .ring-center { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .ring-num { font-size: 31px; font-weight: 800; letter-spacing: -0.02em; }
+  .ring-num small { font-size: 15px; font-weight: 800; }
+  .ring-cap { font-size: 9px; letter-spacing: 0.14em; color: #5eead4; font-weight: 800; margin-top: 1px; }
+  #ring-progress { transition: stroke-dashoffset 1.15s cubic-bezier(0.2, 0.7, 0.3, 1); }
+  .affinity-label { text-align: center; font-size: 12px; color: rgba(255, 255, 255, 0.92); }
+  .affinity-up {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    color: #7cf0c2;
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-top: 6px;
+    opacity: 0;
+    transform: scale(0.7);
+    transition: opacity 0.4s ease 0.9s, transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1) 0.9s;
+  }
+  .panel.active .affinity-up { opacity: 1; transform: scale(1); }
+  .affinity-row { display: flex; flex-direction: column; align-items: center; }
+  .career-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.16); font-size: 11px; font-weight: 700; padding: 7px 13px; border-radius: 999px; margin-top: 12px; }
+  .home-body { padding: 14px 14px 0; flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+  .ai-card { position: relative; background: #e4eafb; border-radius: 16px; padding: 13px 13px 12px; overflow: hidden; }
+  .ai-card .wm { position: absolute; right: -6px; top: 6px; opacity: 0.1; }
+  .ai-tag { display: flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 700; color: #1c2a52; margin-bottom: 7px; }
+  .ai-topic { font-size: 16.5px; font-weight: 800; color: #10182e; margin-bottom: 3px; }
+  .ai-desc { font-size: 10.5px; color: #5a6372; margin-bottom: 10px; }
+  .ai-btn { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 12px; padding: 12px; font-size: 12.5px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 7px; }
+
+  /* ---------- PRÁCTICA ---------- */
+  .prac-body { padding: 12px 14px 0; flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .prac-h1 { font-size: 17.5px; font-weight: 800; color: #10182e; }
+  .prac-sub { font-size: 10.5px; color: var(--muted); line-height: 1.45; margin: 3px 0 10px; }
+  .cat-label { font-size: 8.5px; letter-spacing: 0.1em; font-weight: 800; color: #9aa0ab; margin-bottom: 8px; }
+  .cat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+  .cat { position: relative; background: #fff; border: 1px solid var(--border); border-radius: 14px; padding: 10px 11px 11px; }
+  .cat.reco { border: 1.6px solid var(--gold); }
+  .reco-badge { position: absolute; top: -8px; left: 50%; transform: translateX(-50%); background: var(--gold); color: #fff; font-size: 7px; font-weight: 800; letter-spacing: 0.08em; padding: 3px 8px; border-radius: 999px; white-space: nowrap; }
+  .cat-ic { width: 26px; height: 26px; border-radius: 8px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+  .cat-name { font-size: 11px; font-weight: 800; color: #10182e; margin-bottom: 7px; }
+  .cat-bar { display: flex; align-items: center; gap: 7px; }
+  .bar { flex: 1; height: 4px; border-radius: 99px; background: #ece9df; overflow: hidden; }
+  .bar i { display: block; height: 100%; border-radius: 99px; }
+  .cat-pct { font-size: 9.5px; font-weight: 700; color: #4b5563; }
+  .adapt-card { margin-top: 11px; background: #e4eafb; border-radius: 16px; padding: 12px 13px; position: relative; overflow: hidden; }
+  .adapt-card .wm { position: absolute; right: 0; top: 6px; opacity: 0.14; }
+  .adapt-tag { display: flex; align-items: center; gap: 6px; font-size: 12.5px; font-weight: 800; color: #10182e; margin-bottom: 5px; }
+  .adapt-desc { font-size: 10px; color: #5a6372; line-height: 1.45; margin-bottom: 9px; }
+  .adapt-btn { width: 100%; background: transparent; color: var(--navy); border: 1.4px solid var(--navy); border-radius: 11px; padding: 10px; font-size: 11.5px; font-weight: 800; }
+
+  /* ---------- PREGUNTA ---------- */
+  #panel-question { padding: 46px 15px 0; }
+  .q-top { display: flex; align-items: center; gap: 10px; font-weight: 800; margin-bottom: 12px; }
+  .q-x { font-size: 14px; color: #10182e; }
+  .q-timer { font-size: 15px; letter-spacing: 0.02em; color: #10182e; }
+  .q-count { font-size: 11px; color: #3f4756; margin-left: auto; }
+  .q-all { display: flex; align-items: center; gap: 4px; font-size: 10.5px; color: #2647a8; font-weight: 800; }
+  .q-numrow { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
+  .q-num { font-size: 14.5px; font-weight: 800; color: #10182e; }
+  .q-pill { display: inline-block; background: #eceae1; color: #565e6b; font-size: 8.5px; font-weight: 700; letter-spacing: 0.05em; padding: 5px 10px; border-radius: 9px; margin-bottom: 10px; }
+  .q-math { margin-bottom: 10px; }
+  .q-math svg { display: block; width: 100%; height: auto; }
+  .opt { display: flex; align-items: center; gap: 10px; background: #fff; border: 1.4px solid var(--border); border-radius: 14px; padding: 9px 11px; margin-bottom: 8px; transition: border-color 0.3s ease, background 0.3s ease; }
+  .opt-letter { width: 24px; height: 24px; border-radius: 50%; background: #eceae1; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 800; color: #3f4756; flex-shrink: 0; transition: background 0.3s ease, color 0.3s ease; }
+  .opt-val { font-size: 12px; color: #12161f; }
+  .opt.picked { border: 1.8px solid var(--navy); background: #efeee6; }
+  .opt.picked .opt-letter { background: var(--navy); color: #fff; }
+  .q-footer { margin-top: auto; padding: 8px 0 14px; }
+  .q-nav { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
+  .pill-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; border-radius: 999px; padding: 11px; font-size: 11.5px; font-weight: 800; border: 1px solid var(--border); color: #9aa0ab; background: #fff; }
+  .pill-btn.next { background: var(--teal); color: #fff; border: none; flex: 1.25; }
+  .pill-btn.next.pulse { animation: pulseTeal 1s ease 1; }
+  @keyframes pulseTeal {
+    0% { box-shadow: 0 0 0 0 rgba(15, 157, 140, 0.5); }
+    70% { box-shadow: 0 0 0 11px rgba(15, 157, 140, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(15, 157, 140, 0); }
+  }
+  .q-flag { flex: 0 0 auto; display: flex; align-items: center; padding: 0 3px; }
+  .submit-btn { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 14px; padding: 13px; font-size: 12.5px; font-weight: 800; }
+
+  /* ---------- RESULTADOS y PLAN (cabecera verde) ---------- */
+  .green-head { background: linear-gradient(160deg, var(--green), var(--green-deep)); color: #fff; text-align: center; padding: 50px 0 14px; font-size: 14px; font-weight: 700; }
+  .res-body { padding: 12px 14px 0; flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+  .res-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 13px 14px; margin-bottom: 10px; }
+  .res-eyebrow { font-size: 8.5px; letter-spacing: 0.1em; color: #9aa0ab; font-weight: 800; margin-bottom: 5px; }
+  .res-score { font-size: 36px; font-weight: 800; color: #10182e; line-height: 1.05; }
+  .res-meta { font-size: 10.5px; color: #5a6372; margin: 2px 0 9px; }
+  .res-up { display: flex; align-items: flex-start; gap: 6px; color: var(--green); font-size: 11px; font-weight: 800; line-height: 1.4; opacity: 0; transform: translateY(5px); transition: opacity 0.4s ease, transform 0.4s ease; }
+  .res-up.show { opacity: 1; transform: translateY(0); }
+  .tutor-lead { font-size: 12.5px; font-weight: 800; color: #10182e; line-height: 1.4; margin-bottom: 9px; }
+  .tutor-row { display: flex; align-items: center; gap: 7px; font-size: 10.5px; color: #4b5563; margin-bottom: 6px; }
+  .tutor-btn { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 12px; padding: 11px; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 5px; }
+  .tutor-btn.ghost { background: transparent; color: var(--navy); border: 1.4px solid var(--navy); margin-top: 8px; }
+
+  /* ---------- PLAN DE ESTUDIO ---------- */
+  .plan-body { padding: 11px 14px 0; flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+  .plan-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 12px 13px; margin-bottom: 9px; }
+  .plan-title { display: flex; align-items: flex-start; gap: 8px; }
+  .plan-title b { font-size: 13px; font-weight: 800; color: #10182e; }
+  .plan-title .chev { margin-left: auto; }
+  .plan-quote { font-size: 9.3px; line-height: 1.5; color: #5a6372; margin-top: 4px; padding-left: 26px; }
+  .plan-p { font-size: 9.8px; line-height: 1.5; color: #4b5563; margin-bottom: 9px; padding: 0 2px; }
+  .agenda-row { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 8px; padding: 0 2px; }
+  .agenda-row b { font-size: 12.5px; font-weight: 800; color: #10182e; }
+  .agenda-row span { font-size: 8px; letter-spacing: 0.1em; font-weight: 800; color: #9aa0ab; }
+  .block { background: #fff; border: 1px solid var(--border); border-radius: 14px; overflow: hidden; margin-bottom: 9px; }
+  .block-days { display: flex; align-items: center; justify-content: space-around; background: linear-gradient(90deg, #24418f, #4f7ce0); padding: 5px 10px; }
+  .day { font-size: 8px; font-weight: 800; color: rgba(255, 255, 255, 0.55); padding: 2px 6px; border-radius: 6px; }
+  .day.on { background: rgba(255, 255, 255, 0.24); color: #fff; }
+  .block-row { display: flex; align-items: center; gap: 9px; padding: 9px 11px; }
+  .block-ic { width: 30px; height: 30px; border-radius: 9px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .block-name { font-size: 12px; font-weight: 800; color: #10182e; }
+  .block-sub { font-size: 9.3px; color: #7b828e; line-height: 1.35; }
+  .block-n { margin-left: auto; text-align: right; flex-shrink: 0; }
+  .block-n b { display: block; font-size: 17px; font-weight: 800; color: #24418f; line-height: 1; }
+  .block-n span { font-size: 7px; letter-spacing: 0.08em; font-weight: 800; color: #9aa0ab; }
+  .block-underline { height: 3px; background: var(--gold); }
+
+  /* ---------- PROGRESO ---------- */
+  .prog-body { padding: 11px 13px 0; flex: 1; overflow: hidden; display: flex; flex-direction: column; }
+  .prog-card { background: #fff; border: 1px solid var(--border); border-radius: 16px; padding: 11px 12px 10px; }
+  .prog-label { font-size: 8.5px; letter-spacing: 0.12em; font-weight: 800; color: #9aa0ab; margin-bottom: 2px; }
+  .radar-wrap { display: flex; justify-content: center; }
+  .radar-wrap svg { width: 100%; max-width: 236px; height: auto; }
+  #radar-poly, .rdot {
+    transform-box: fill-box;
+    transform-origin: center;
+    transform: scale(0.35);
+    opacity: 0;
+    transition: transform 0.8s cubic-bezier(0.2, 0.9, 0.3, 1) var(--rd, 0.15s), opacity 0.5s ease var(--rd, 0.15s);
+  }
+  .panel.active #radar-poly, .panel.active .rdot { transform: scale(1); opacity: 1; }
+  .radar-eval { text-align: center; font-size: 10px; color: #5a6372; margin: 2px 0 9px; }
+  .tabs { display: flex; gap: 6px; margin-bottom: 9px; }
+  .tab { flex: 1; text-align: center; white-space: nowrap; font-size: 9.5px; font-weight: 700; color: #4b5563; background: #eceae1; border-radius: 999px; padding: 7px 4px; }
+  .tab.on { background: var(--navy); color: #fff; font-weight: 800; }
+  .topic-row { display: flex; align-items: center; gap: 8px; padding: 5px 2px; }
+  .topic-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+  .topic-name { font-size: 11.5px; font-weight: 700; color: #10182e; }
+  .topic-state { margin-left: auto; font-size: 10.5px; color: #7b828e; }
+  .prog-duo { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 10px; }
+  .duo-card { border-radius: 14px; padding: 10px 11px; border: 1px solid; }
+  .duo-card.f { background: #eaf8ef; border-color: #c7ead3; }
+  .duo-card.c { background: #fdeeec; border-color: #f6cfc9; }
+  .duo-tag { font-size: 9.5px; font-weight: 800; margin-bottom: 3px; }
+  .duo-card.f .duo-tag { color: #17954a; }
+  .duo-card.c .duo-tag { color: #e03e2f; }
+  .duo-name { font-size: 12.5px; font-weight: 800; color: #10182e; margin-bottom: 2px; }
+  .duo-sub { font-size: 9.5px; font-weight: 700; }
+  .duo-card.f .duo-sub { color: #17954a; }
+  .duo-card.c .duo-sub { color: #e03e2f; }
+
+  /* ---------- QUIZ VOCACIONAL ---------- */
+  .quiz-head { background: linear-gradient(165deg, #17a693, #0d8172); color: #fff; padding: 46px 18px 22px; border-radius: 0 0 28px 28px; }
+  .quiz-toprow { display: flex; align-items: center; gap: 10px; margin-bottom: 9px; }
+  .quiz-x { font-size: 14px; font-weight: 800; }
+  .quiz-phase { font-size: 10.5px; font-weight: 700; opacity: 0.95; }
+  .quiz-progress { display: flex; gap: 10px; margin-bottom: 14px; }
+  .qp { flex: 1; height: 5px; border-radius: 99px; background: rgba(8, 72, 63, 0.35); overflow: hidden; }
+  .qp i { display: block; height: 100%; border-radius: 99px; background: #0a5e52; }
+  .quiz-title { font-size: 18.5px; font-weight: 800; line-height: 1.25; letter-spacing: -0.01em; }
+  .quiz-body { padding: 14px 15px 0; flex: 1; }
+  .qopt { display: flex; align-items: center; gap: 11px; background: #fff; border: 1.4px solid var(--border); border-radius: 16px; padding: 13px 13px; margin-bottom: 10px; transition: border-color 0.3s ease, box-shadow 0.3s ease; }
+  .qopt > svg { flex-shrink: 0; }
+  .qopt-txt { font-size: 12px; font-weight: 600; color: #1a2130; line-height: 1.35; }
+  .qradio { margin-left: auto; width: 19px; height: 19px; border-radius: 50%; border: 1.6px solid #d8d4c9; flex-shrink: 0; position: relative; transition: border-color 0.3s ease; }
+  .qradio::after { content: ""; position: absolute; inset: 3px; border-radius: 50%; background: var(--teal); transform: scale(0); transition: transform 0.3s cubic-bezier(0.3, 1.4, 0.5, 1); }
+  .qopt.picked { border-color: var(--teal); box-shadow: 0 0 0 1px var(--teal) inset; }
+  .qopt.picked .qradio { border-color: var(--teal); }
+  .qopt.picked .qradio::after { transform: scale(1); }
+
+  /* ---------- MATCH ---------- */
+  .match-header { position: relative; background: var(--navy); color: #fff; padding: 46px 16px 44px; border-radius: 0 0 30px 30px; }
+  .match-toprow { display: flex; align-items: center; gap: 9px; margin-bottom: 14px; }
+  .back-pill { display: flex; align-items: center; gap: 4px; background: #c7cede; color: #1c2a52; font-size: 10.5px; font-weight: 800; padding: 6px 11px; border-radius: 999px; }
+  .match-toptitle { font-size: 13px; font-weight: 700; }
+  .spark { position: absolute; color: var(--gold); }
+  .spark-1 { top: 74px; left: 26px; }
+  .spark-2 { top: 96px; right: 26px; }
+  .spark-3 { bottom: 44px; left: 44px; }
+  .star-ic { width: 40px; height: 40px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 9px; }
+  .panel.active .star-ic { animation: spinIn 0.7s ease both; }
+  @keyframes spinIn {
+    from { transform: rotate(-40deg) scale(0.5); opacity: 0; }
+    to { transform: rotate(0) scale(1); opacity: 1; }
+  }
+  .match-title { font-size: 15.5px; font-weight: 800; text-align: center; margin-bottom: 3px; }
+  .match-sub { font-size: 10.5px; text-align: center; color: rgba(255, 255, 255, 0.82); }
+  .match-card { background: #fff; border-radius: 18px; margin: -30px 14px 0; padding: 15px 14px 13px; text-align: center; box-shadow: 0 14px 30px -16px rgba(15, 30, 55, 0.22); position: relative; z-index: 2; }
+  .crown { width: 44px; height: 44px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; }
+  .career-name { font-size: 15px; font-weight: 800; color: #10182e; }
+  .career-cat { font-size: 10px; color: #7b828e; margin: 2px 0 10px; }
+  .seg-row { display: flex; gap: 4px; justify-content: center; margin-bottom: 7px; }
+  .seg { width: 17px; height: 7px; border-radius: 4px; background: #e8e5db; transition: background 0.25s ease; }
+  .seg.on { background: #2563eb; }
+  .match-pct { font-size: 11px; margin-bottom: 11px; color: #7b828e; }
+  .match-pct b { color: #24418f; font-weight: 800; }
+  .explore-btn { width: 100%; background: #0f9d8c; color: #fff; border: none; border-radius: 12px; padding: 11px; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 6px; }
+  .also-wrap { padding: 10px 14px 0; flex: 1; display: flex; flex-direction: column; }
+  .also-label { font-size: 8.5px; letter-spacing: 0.1em; font-weight: 800; color: #9aa0ab; margin-bottom: 7px; }
+  .also-row { display: flex; align-items: center; gap: 9px; background: #fff; border: 1px solid var(--border); border-radius: 13px; padding: 9px 12px; font-size: 11.5px; font-weight: 700; color: #10182e; }
+  .also-num { width: 20px; height: 20px; border-radius: 50%; background: #eceae1; display: flex; align-items: center; justify-content: center; font-size: 9.5px; font-weight: 800; color: #4b5563; flex-shrink: 0; }
+  .also-pct { margin-left: auto; font-size: 12px; font-weight: 800; color: #3f4756; display: flex; align-items: center; gap: 4px; }
+  .match-actions { margin-top: auto; padding: 8px 0 4px; }
+  .match-cta { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 13px; padding: 12px; font-size: 12px; font-weight: 800; margin-bottom: 8px; }
+  .match-cta.ghost { background: transparent; color: var(--navy); border: 1.4px solid var(--navy); display: flex; align-items: center; justify-content: center; gap: 7px; margin-bottom: 0; }
+
+  /* ---------- meta bajo el teléfono (adaptado a fondo oscuro) ---------- */
+  .scene-meta { margin-top: 18px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+  .cap {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.72);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    min-height: 16px;
+  }
+  .cap.swap { animation: capIn 0.45s cubic-bezier(0.22, 0.7, 0.3, 1); }
+  @keyframes capIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+
+  .scene-nav { display: flex; align-items: center; gap: 14px; }
+  .arrow {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    color: rgba(255, 255, 255, 0.6);
+    cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  }
+  .arrow:hover { background: rgba(255, 255, 255, 0.12); color: #fff; transform: scale(1.06); }
+  .arrow svg { display: block; }
+  .dots { display: flex; gap: 7px; align-items: center; }
+  .dot-i {
+    width: 8px;
+    height: 8px;
+    border-radius: 99px;
+    border: none;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.25);
+    transition: all 0.3s ease;
+    cursor: pointer;
+  }
+  .dot-i:hover { background: rgba(255, 255, 255, 0.5); }
+  .dot-i.on { width: 22px; background: var(--gold); }
+
+  /* Vista móvil: teléfono comprimido y flechas flotando a los lados */
+  @media (max-width: 640px) {
+    .phone { zoom: 0.78; }
+    .scene-meta { margin-top: 12px; gap: 10px; }
+    .arrow {
+      position: absolute;
+      top: 40%;
+      z-index: 5;
+      width: 32px;
+      height: 32px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+    #pd-prev { left: -42px; }
+    #pd-next { right: -42px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .panel { transition: none; }
+    .s { opacity: 1 !important; animation: none !important; }
+    .pill-btn.next, .star-ic { animation: none !important; }
+    #radar-poly, .rdot { transform: none; opacity: 1; transition: none; }
+    .affinity-up { opacity: 1; transform: none; transition: none; }
+    #ring-progress { transition: none; }
+    .res-up { opacity: 1; transform: none; }
+  }
+</style>
+
+<script>
+  const rootEl = document.getElementById("phone-demo");
+  if (rootEl) initPhoneDemo(rootEl);
+
+  function initPhoneDemo(root: HTMLElement) {
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    const phases = [
+      { id: "home",     dur: 5000, cap: "Tu afinidad, en vivo",       sb: "#FFFFFF" },
+      { id: "practica", dur: 4000, cap: "Práctica adaptativa",        sb: "#FFFFFF" },
+      { id: "question", dur: 4600, cap: "Simulacro real UNC",         sb: "#15181F" },
+      { id: "results",  dur: 4200, cap: "Resultados al instante",     sb: "#FFFFFF" },
+      { id: "plan",     dur: 4400, cap: "Plan de estudio con IA",     sb: "#FFFFFF" },
+      { id: "progreso", dur: 4400, cap: "Radar de dominio Markov",    sb: "#FFFFFF" },
+      { id: "quiz",     dur: 3600, cap: "Test vocacional adaptativo", sb: "#FFFFFF" },
+      { id: "match",    dur: 4800, cap: "Tu carrera ideal",           sb: "#FFFFFF" },
+    ];
+
+    const $ = (sel: string) => root.querySelector<HTMLElement>(sel);
+    const screen = $("#pd-screen")!;
+    const capEl = $("#pd-cap")!;
+    const dots = Array.from(root.querySelectorAll<HTMLButtonElement>(".dot-i"));
+
+    function ease(t: number) { return 1 - Math.pow(1 - t, 3); }
+    function animateNumber(el: HTMLElement, from: number, to: number, dur: number, onDone?: () => void) {
+      let start: number | null = null;
+      function step(ts: number) {
+        if (!start) start = ts;
+        const p = Math.min((ts - start) / dur, 1);
+        el.textContent = String(Math.round(from + (to - from) * ease(p)));
+        if (p < 1) requestAnimationFrame(step);
+        else if (onDone) onDone();
+      }
+      requestAnimationFrame(step);
+    }
+
+    /* ---- animaciones por pantalla ---- */
+    const C = 2 * Math.PI * 52; // 326.73
+    function animHome() {
+      const ring = $("#ring-progress")!;
+      const num = $("#ring-num")!;
+      ring.style.transition = "none";
+      ring.style.strokeDashoffset = String(C);
+      num.textContent = "0";
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        ring.style.transition = "stroke-dashoffset 1.15s cubic-bezier(.2,.7,.3,1)";
+        ring.style.strokeDashoffset = String(C * (1 - 0.71));
+        animateNumber(num, 0, 71, 1150);
+      }));
+    }
+
+    let qInterval: ReturnType<typeof setInterval> | null = null;
+    let qSecs = 0;
+    const fmt = (n: number) => (n < 10 ? "0" + n : "" + n);
+    function animQuestion() {
+      const opt = $("#opt-e")!;
+      const next = $("#next-btn")!;
+      const timer = $("#q-timer")!;
+      opt.classList.remove("picked");
+      next.classList.remove("pulse");
+      qSecs = 2 * 3600 + 55 * 60 + 23;
+      timer.textContent = "02:55:23";
+      qInterval = setInterval(() => {
+        qSecs--;
+        const h = Math.floor(qSecs / 3600), m = Math.floor((qSecs % 3600) / 60), s = qSecs % 60;
+        timer.textContent = fmt(h) + ":" + fmt(m) + ":" + fmt(s);
+      }, 1000);
+      setTimeout(() => opt.classList.add("picked"), 900);
+      setTimeout(() => next.classList.add("pulse"), 2300);
+    }
+
+    function animResults() {
+      const num = $("#res-num")!;
+      const up = $("#res-up")!;
+      up.classList.remove("show");
+      num.textContent = "0";
+      setTimeout(() => {
+        animateNumber(num, 0, 418, 950, () => {
+          setTimeout(() => up.classList.add("show"), 120);
+        });
+      }, 300);
+    }
+
+    function animQuiz() {
+      const o = $("#qopt-math")!;
+      o.classList.remove("picked");
+      setTimeout(() => o.classList.add("picked"), 1500);
+    }
+
+    function animMatch() {
+      const segs = root.querySelectorAll("#seg-row .seg");
+      const num = $("#match-num")!;
+      segs.forEach((s) => s.classList.remove("on"));
+      num.textContent = "0";
+      segs.forEach((s, i) => {
+        setTimeout(() => s.classList.add("on"), 400 + i * 85);
+      });
+      setTimeout(() => animateNumber(num, 0, 100, 850), 450);
+    }
+
+    function setStatic() {
+      // estado final para prefers-reduced-motion
+      $("#ring-progress")!.style.strokeDashoffset = String(C * (1 - 0.71));
+      $("#ring-num")!.textContent = "71";
+      $("#res-num")!.textContent = "418";
+      $("#res-up")!.classList.add("show");
+      $("#match-num")!.textContent = "100";
+      root.querySelectorAll("#seg-row .seg").forEach((s) => s.classList.add("on"));
+      $("#opt-e")!.classList.add("picked");
+      $("#qopt-math")!.classList.add("picked");
+    }
+
+    /* ---- bucle + navegación manual ---- */
+    let idx = 0;
+    let timeoutId: ReturnType<typeof setTimeout> | null = null;
+    let endAt = 0, remaining = 0, paused = false;
+
+    function activate(i: number) {
+      idx = i;
+      const p = phases[i];
+      if (qInterval) { clearInterval(qInterval); qInterval = null; }
+      root.querySelectorAll(".panel").forEach((el) => el.classList.remove("active"));
+      $("#panel-" + p.id)!.classList.add("active");
+      screen.style.setProperty("--sb", p.sb);
+      capEl.textContent = p.cap;
+      dots.forEach((d, di) => d.classList.toggle("on", di === i));
+      if (reduced) return;
+      capEl.classList.remove("swap");
+      void capEl.offsetWidth;
+      capEl.classList.add("swap");
+      if (p.id === "home") animHome();
+      if (p.id === "question") animQuestion();
+      if (p.id === "results") animResults();
+      if (p.id === "quiz") animQuiz();
+      if (p.id === "match") animMatch();
+    }
+
+    function schedule(ms: number) {
+      if (reduced) return;
+      endAt = Date.now() + ms;
+      timeoutId = setTimeout(next, ms);
+    }
+    function next() {
+      goTo((idx + 1) % phases.length);
+    }
+    function goTo(i: number) {
+      if (timeoutId) clearTimeout(timeoutId);
+      activate(i);
+      if (paused) {
+        remaining = phases[i].dur;
+      } else {
+        schedule(phases[i].dur);
+      }
+    }
+
+    dots.forEach((d, i) => d.addEventListener("click", () => goTo(i)));
+    $("#pd-prev")?.addEventListener("click", () => goTo((idx - 1 + phases.length) % phases.length));
+    $("#pd-next")?.addEventListener("click", () => goTo((idx + 1) % phases.length));
+
+    if (reduced) {
+      setStatic();
+      activate(0); // Home estático; la navegación manual sigue funcionando
+      return;
+    }
+
+    /* pausa al pasar el mouse sobre el teléfono */
+    const wrap = $("#pd-wrap")!;
+    wrap.addEventListener("mouseenter", () => {
+      if (paused) return;
+      paused = true;
+      remaining = Math.max(endAt - Date.now(), 400);
+      if (timeoutId) clearTimeout(timeoutId);
+    });
+    wrap.addEventListener("mouseleave", () => {
+      if (!paused) return;
+      paused = false;
+      schedule(remaining);
+    });
+
+    activate(0);
+    schedule(phases[0].dur);
+  }
+</script>

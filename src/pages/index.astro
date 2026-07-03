@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import PhoneDemo from "../components/PhoneDemo.astro";
 ---
 
 <Layout>
@@ -56,23 +57,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
 
         <div class="hero-phone-slot">
-          <div class="phone-wrap">
-            <div class="phone-frame">
-              <div class="phone-notch"></div>
-              <div class="phone-screen">
-                <img src="/afinidad-screen.webp" alt="Pantalla de afinidad por carrera de AcademIA" />
-              </div>
-            </div>
-            <div class="phone-callout">
-              <div class="callout-icon">
-                <i class="mdi mdi-trending-up" style="font-size:23px;color:#22c55e"></i>
-              </div>
-              <div class="callout-body">
-                <span class="callout-label">Afinidad · Contabilidad</span>
-                <span class="callout-value"><span style="color:#22c55e">▲ +23%</span> <span class="callout-sub">esta semana</span></span>
-              </div>
-            </div>
-          </div>
+          <PhoneDemo />
         </div>
       </div>
     </header>
@@ -581,80 +566,6 @@ h1 {
   justify-content: center;
   position: relative;
 }
-.phone-wrap {
-  position: relative;
-  width: clamp(260px,80%,300px);
-}
-.phone-frame {
-  position: relative;
-  border-radius: 42px;
-  background: #161f33;
-  padding: 11px;
-  box-shadow: 0 40px 90px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(255,255,255,.06);
-}
-.phone-notch {
-  position: absolute;
-  left: 50%; top: 18px;
-  transform: translateX(-50%);
-  width: 96px; height: 26px;
-  background: #0b1220;
-  border-radius: 0 0 16px 16px;
-  z-index: 2;
-}
-.phone-screen {
-  position: relative;
-  aspect-ratio: 9/19.5;
-  border-radius: 32px;
-  overflow: hidden;
-  background: #1e3a8a;
-}
-.phone-screen img {
-  width: 100%; height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.phone-callout {
-  position: absolute;
-  bottom: -20px; left: -26px;
-  display: flex;
-  align-items: center;
-  gap: 13px;
-  background: #10182b;
-  border: 1px solid rgba(255,255,255,.1);
-  border-radius: 16px;
-  padding: 13px 17px;
-  box-shadow: 0 24px 48px -18px rgba(0,0,0,.7);
-}
-.callout-icon {
-  width: 42px; height: 42px;
-  border-radius: 11px;
-  background: rgba(22,163,74,.16);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex: none;
-}
-.callout-body {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
-}
-.callout-label {
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: .12em;
-  text-transform: uppercase;
-  color: #64748b;
-}
-.callout-value {
-  font-family: 'Space Grotesk', sans-serif;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 1;
-  color: #fafaf7;
-}
-.callout-sub { font-family: Inter; font-size: 12px; font-weight: 500; color: #64748b; }
-
 /* ── SECTIONS SHARED ── */
 .section-inner {
   max-width: 1180px;
@@ -1058,10 +969,6 @@ h2 {
   color: #475569;
 }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 600px) {
-  .phone-callout { left: -8px; }
-}
 </style>
 
 <script>
