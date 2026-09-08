@@ -15,10 +15,51 @@ const {
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
+
+const siteUrl = Astro.site!.toString().replace(/\/$/, "");
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "AcademIA",
+      url: siteUrl,
+      logo: `${siteUrl}/academia-logo.svg`,
+      email: "noreply@academiaapp.online",
+      description:
+        "AcademIA prepara a postulantes para el examen de admisión de la Universidad Nacional de Cajamarca (UNC) con simulacros reales y práctica adaptada a cada carrera.",
+      areaServed: {
+        "@type": "Place",
+        name: "Cajamarca, Perú",
+      },
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "AcademIA",
+      inLanguage: "es-PE",
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": `${siteUrl}/#app`,
+      name: "AcademIA",
+      applicationCategory: "EducationalApplication",
+      operatingSystem: "Android, iOS",
+      inLanguage: "es-PE",
+      description:
+        "App de preparación para el examen de admisión a la UNC. Mide tu afinidad por cada carrera mientras practicas y te dice qué estudiar cada día.",
+      publisher: { "@id": `${siteUrl}/#organization` },
+    },
+  ],
+};
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es-PE">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -63,6 +104,9 @@ const ogImage = new URL(image, Astro.site);
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+
+    <!-- Datos estructurados -->
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body>
     <slot />
