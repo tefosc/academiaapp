@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
-  site: 'https://academiaapp.online',
+  site: 'https://academiaquest.app',
   output: 'static',
   integrations: [
     sitemap({

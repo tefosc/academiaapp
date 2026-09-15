@@ -6,7 +6,8 @@ Always respond in Spanish.
 
 ## Project
 
-Landing page de AcademIA en Astro. Deploy a GitHub Pages con dominio `academiaapp.online`.
+Landing page de AcademIA en Astro. Deploy a GitHub Pages con dominio `academiaquest.app`
+(antes `academiaapp.online`, migrado en sept. 2026; ese dominio ahora solo redirige al nuevo).
 Repo: https://github.com/tefosc/academiaapp
 
 ## Brand
