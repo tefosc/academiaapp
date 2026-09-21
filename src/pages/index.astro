@@ -30,8 +30,10 @@ import PhoneDemo from "../components/PhoneDemo.astro";
       </div>
     </nav>
 
+    <main id="contenido">
+
     <!-- HERO -->
-    <header class="hero">
+    <section class="hero">
       <svg aria-hidden="true" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1240 640" class="hero-svg">
         <path d="M-60 590 C 320 548 540 384 780 314 S 1150 162 1330 92" style="fill:none;stroke:#4A90D9;stroke-opacity:.45;stroke-width:2.2;stroke-linecap:round;stroke-dasharray:2 10"></path>
         <path d="M-60 622 C 340 560 600 436 820 340 S 1150 210 1330 128" style="fill:none;stroke:#ffffff;stroke-opacity:.12;stroke-width:1.6;stroke-linecap:round"></path>
@@ -66,7 +68,7 @@ import PhoneDemo from "../components/PhoneDemo.astro";
           <PhoneDemo />
         </div>
       </div>
-    </header>
+    </section>
 
     <!-- PROBLEMA -->
     <section class="problema">
@@ -192,7 +194,7 @@ import PhoneDemo from "../components/PhoneDemo.astro";
               </svg>
               <div class="gauge-center">
                 <span class="gauge-pct">34<span class="gauge-unit">%</span></span>
-                <span class="gauge-state" style="color:#dc2626">Crítico</span>
+                <span class="gauge-state" style="color:#f87171">Crítico</span>
               </div>
             </div>
             <span class="gauge-career">Enfermería</span>
@@ -359,6 +361,8 @@ import PhoneDemo from "../components/PhoneDemo.astro";
         </div>
       </div>
     </section>
+
+    </main>
 
     <!-- FOOTER -->
     <footer class="footer">
@@ -672,7 +676,7 @@ h1 {
 .hero-footnote {
   font-size: 13px;
   font-weight: 500;
-  color: #64748b;
+  color: #7f8ca3;
   margin: 0;
 }
 
@@ -774,7 +778,7 @@ h2 {
 }
 .kicker--teal { color: #0d9488; }
 .kicker--gold { color: #f59e0b; }
-.kicker--red  { color: #dc2626; }
+.kicker--red  { color: #f87171; }
 .teal { color: #0d9488; }
 
 /* ── PROBLEMA ── */
@@ -948,7 +952,7 @@ h2 {
   color: #fafaf7;
   line-height: 1;
 }
-.gauge-unit { font-size: 18px; color: #64748b; }
+.gauge-unit { font-size: 18px; color: #7f8ca3; }
 .gauge-state {
   font-size: 10px;
   font-weight: 600;
@@ -965,7 +969,7 @@ h2 {
 .gauge-sub {
   font-size: 12px;
   font-weight: 500;
-  color: #64748b;
+  color: #7f8ca3;
   margin-top: 4px;
 }
 .gauge-legend {
@@ -1029,7 +1033,7 @@ h2 {
 }
 .modulo-carreras {
   font-size: 14px;
-  color: #64748b;
+  color: #7f8ca3;
   flex: 1 1 230px;
   min-width: 0;
 }
@@ -1088,7 +1092,7 @@ h2 {
   gap: 9px;
   font-size: 13px;
   font-weight: 500;
-  color: #64748b;
+  color: #7f8ca3;
   margin-top: auto;
 }
 .testimonio-dot {
@@ -1167,7 +1171,7 @@ h2 {
 }
 .footer-desc {
   font-size: 14px; line-height: 1.6;
-  color: #64748b;
+  color: #7f8ca3;
   margin: 0;
   max-width: 340px;
 }
@@ -1181,7 +1185,7 @@ h2 {
   font-weight: 600;
   letter-spacing: .14em;
   text-transform: uppercase;
-  color: #475569;
+  color: #7f8ca3;
 }
 .footer-links {
   display: flex;
@@ -1195,7 +1199,7 @@ h2 {
   transition: color .16s;
 }
 .footer-links a:hover { color: #fafaf7; }
-.footer-url { color: #64748b; }
+.footer-url { color: #7f8ca3; }
 .footer-bottom {
   max-width: 1180px;
   margin: 44px auto 0;
@@ -1207,7 +1211,7 @@ h2 {
   justify-content: space-between;
   align-items: center;
   font-size: 13px;
-  color: #475569;
+  color: #7f8ca3;
 }
 
 /* ── ANIMACIONES (sin librerías) ──
