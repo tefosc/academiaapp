@@ -1013,8 +1013,12 @@
       capEl.textContent = p.cap;
       dots.forEach((d, di) => d.classList.toggle("on", di === i));
       if (reduced) return;
-      capEl.classList.remove("swap");
-      void capEl.offsetWidth;
+      // Reiniciar la animación exige leer el layout (reflow forzado). Solo hace falta desde el
+      // segundo cambio: la primera vez el elemento aún no tiene la clase y la animación arranca sola.
+      if (capEl.classList.contains("swap")) {
+        capEl.classList.remove("swap");
+        void capEl.offsetWidth;
+      }
       capEl.classList.add("swap");
       if (p.id === "home") animHome();
       if (p.id === "question") animQuestion();

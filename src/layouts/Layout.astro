@@ -65,6 +65,14 @@ const jsonLd = {
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
 
+    <!-- Marca <html class="js"> solo si las animaciones de entrada pueden correr.
+         Sin esto (sin JS, sin IntersectionObserver o con movimiento reducido) todo el contenido queda visible. -->
+    <script is:inline>
+      if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.documentElement.classList.add('js');
+      }
+    </script>
+
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
