@@ -20,6 +20,12 @@ import PhoneDemo from "../components/PhoneDemo.astro";
             <a href="#modulos">Módulos UNC</a>
           </div>
           <!-- <a href="#descargar" class="nav-cta">Descargar</a> -->
+          <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path class="nav-toggle-open" d="M4 7h16M4 12h16M4 17h16"/>
+              <path class="nav-toggle-close" d="M6 6l12 12M18 6L6 18"/>
+            </svg>
+          </button>
         </div>
       </div>
     </nav>
@@ -434,6 +440,24 @@ import PhoneDemo from "../components/PhoneDemo.astro";
         });
       }
 
+      /* ── Menú móvil ── */
+      var nav = document.getElementById('navbar');
+      var toggle = nav && nav.querySelector('.nav-toggle');
+      if (nav && toggle) {
+        var setMenu = function (open) {
+          nav.classList.toggle('nav-open', open);
+          toggle.setAttribute('aria-expanded', String(open));
+          toggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+        };
+        toggle.addEventListener('click', function () { setMenu(!nav.classList.contains('nav-open')); });
+        navLinks.forEach(function (l) { l.addEventListener('click', function () { setMenu(false); }); });
+        document.addEventListener('keydown', function (e) {
+          if (e.key === 'Escape' && nav.classList.contains('nav-open')) { setMenu(false); toggle.focus(); }
+        });
+        document.addEventListener('click', function (e) { if (!nav.contains(e.target)) setMenu(false); });
+        window.matchMedia('(min-width: 769px)').addEventListener('change', function (e) { if (e.matches) setMenu(false); });
+      }
+
       /* ── Entrada de secciones al hacer scroll ──
          Solo actúa si el <head> marcó <html class="js">; sin JS o con movimiento
          reducido nada se oculta y todo el contenido se ve desde el inicio. */
@@ -521,9 +545,56 @@ import PhoneDemo from "../components/PhoneDemo.astro";
   white-space: nowrap;
 }
 .nav-cta:hover { opacity: .88; }
-@media (max-width: 768px) {
-  .nav-links { display: none; }
+
+/* Botón del menú: solo en pantallas angostas. Objetivo táctil de 44x44. */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  margin-right: -10px;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: 0;
+  border-radius: 10px;
+  color: #fafaf7;
+  cursor: pointer;
+  transition: background .16s;
 }
+.nav-toggle:hover { background: rgba(255,255,255,.07); }
+.nav-toggle:focus-visible { outline: 2px solid #f59e0b; outline-offset: 2px; }
+.nav-toggle svg { width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; }
+.nav-toggle .nav-toggle-close { display: none; }
+#navbar.nav-open .nav-toggle-open { display: none; }
+#navbar.nav-open .nav-toggle-close { display: inline; }
+
+@media (max-width: 768px) {
+  .nav-toggle { display: inline-flex; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 6px clamp(20px,5vw,56px) 14px;
+    background: #0b1220;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+  }
+  #navbar.nav-open { background: #0b1220; }
+  #navbar.nav-open .nav-links { display: flex; }
+  .nav-links a {
+    padding: 14px 0;
+    font-size: 16px;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+  }
+  .nav-links a:last-child { border-bottom: 0; }
+}
+
+/* Al saltar a una sección desde el menú, el título no queda bajo la barra fija */
+#como, #features, #modulos { scroll-margin-top: 24px; }
 
 /* ── HERO ── */
 .hero {
