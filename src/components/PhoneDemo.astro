@@ -543,33 +543,39 @@
     font-weight: 700;
     color: var(--sb);
     z-index: 6;
-    transition: color 0.35s ease;
+    /* Sin transición de color: la pantalla de detrás cambia al instante, y un color que llega tarde
+       deja unos milisegundos de texto con el contraste de la pantalla anterior. */
     pointer-events: none;
   }
   .statusbar svg { display: block; }
 
-  /* Paneles */
+  /* Paneles
+     El texto de la maqueta nunca pasa por un estado semitransparente: un fundido de opacidad baja el
+     contraste efectivo mientras dura y las auditorías de accesibilidad lo miden así. El cambio de
+     pantalla usa visibility + transform, y las entradas escalonadas solo transform. */
   .panel {
     position: absolute;
     inset: 0;
-    opacity: 0;
+    visibility: hidden;
     transform: translateY(10px) scale(0.985);
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: transform 0.5s ease;
     pointer-events: none;
     display: flex;
     flex-direction: column;
   }
-  .panel.active { opacity: 1; transform: translateY(0) scale(1); }
+  .panel.active { visibility: visible; transform: translateY(0) scale(1); }
+  /* Las 7 pantallas inactivas no se calculan (estilo, layout, pintado) hasta que les toca: es lo que
+     más pesa en la carga. El tamaño no depende del contenido (inset: 0), así que no cambia nada. */
+  .panel:not(.active) { content-visibility: hidden; }
 
   /* Entradas escalonadas */
-  .s { opacity: 0; }
   .panel.active .s { animation: rise 0.55s cubic-bezier(0.22, 0.7, 0.3, 1) both; }
   .panel.active .s1 { animation-delay: 0.05s; } .panel.active .s2 { animation-delay: 0.12s; }
   .panel.active .s3 { animation-delay: 0.19s; } .panel.active .s4 { animation-delay: 0.26s; }
   .panel.active .s5 { animation-delay: 0.33s; } .panel.active .s6 { animation-delay: 0.40s; }
   .panel.active .s7 { animation-delay: 0.47s; } .panel.active .s8 { animation-delay: 0.54s; }
   .panel.active .s9 { animation-delay: 0.61s; }
-  @keyframes rise { from { opacity: 0; transform: translateY(9px); } to { opacity: 1; transform: none; } }
+  @keyframes rise { from { transform: translateY(9px); } to { transform: none; } }
 
   /* Barra de navegación inferior (compartida) */
   .navbar {
@@ -622,11 +628,11 @@
     padding: 3px 10px;
     border-radius: 999px;
     margin-top: 6px;
-    opacity: 0;
+    visibility: hidden;
     transform: scale(0.7);
-    transition: opacity 0.4s ease 0.9s, transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1) 0.9s;
+    transition: transform 0.4s cubic-bezier(0.3, 1.4, 0.5, 1) 0.9s, visibility 0s 0.9s;
   }
-  .panel.active .affinity-up { opacity: 1; transform: scale(1); }
+  .panel.active .affinity-up { visibility: visible; transform: scale(1); }
   .affinity-row { display: flex; flex-direction: column; align-items: center; }
   .career-pill { display: inline-flex; align-items: center; gap: 6px; background: rgba(255, 255, 255, 0.16); font-size: 11px; font-weight: 700; padding: 7px 13px; border-radius: 999px; margin-top: 12px; }
   .home-body { padding: 14px 14px 0; flex: 1; overflow: hidden; display: flex; flex-direction: column; }
@@ -678,12 +684,23 @@
   .q-footer { margin-top: auto; padding: 8px 0 14px; }
   .q-nav { display: flex; align-items: center; gap: 9px; margin-bottom: 9px; }
   .pill-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; border-radius: 999px; padding: 11px; font-size: 11.5px; font-weight: 800; border: 1px solid var(--border); color: #666d7a; background: #fff; }
-  .pill-btn.next { background: #0b7f71; color: #fff; border: none; flex: 1.25; }
-  .pill-btn.next.pulse { animation: pulseTeal 1s ease 1; }
+  .pill-btn.next { position: relative; background: #0b7f71; color: #fff; border: none; flex: 1.25; }
+  /* El pulso es un anillo aparte que se escala y se desvanece (transform y opacity se componen en la
+     GPU); antes animaba box-shadow, que obliga a repintar. */
+  .pill-btn.next::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 999px;
+    border: 2px solid rgba(15, 157, 140, 0.55);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .pill-btn.next.pulse::after { animation: pulseTeal 1s ease 1; }
   @keyframes pulseTeal {
-    0% { box-shadow: 0 0 0 0 rgba(15, 157, 140, 0.5); }
-    70% { box-shadow: 0 0 0 11px rgba(15, 157, 140, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(15, 157, 140, 0); }
+    0% { transform: scale(1); opacity: 0.55; }
+    70% { transform: scale(1.17, 1.6); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
   }
   .q-flag { flex: 0 0 auto; display: flex; align-items: center; padding: 0 3px; }
   .submit-btn { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 14px; padding: 13px; font-size: 12.5px; font-weight: 800; }
@@ -695,8 +712,8 @@
   .res-eyebrow { font-size: 8.5px; letter-spacing: 0.1em; color: #666d7a; font-weight: 800; margin-bottom: 5px; }
   .res-score { font-size: 36px; font-weight: 800; color: #10182e; line-height: 1.05; }
   .res-meta { font-size: 10.5px; color: #5a6372; margin: 2px 0 9px; }
-  .res-up { display: flex; align-items: flex-start; gap: 6px; color: #15803d; font-size: 11px; font-weight: 800; line-height: 1.4; opacity: 0; transform: translateY(5px); transition: opacity 0.4s ease, transform 0.4s ease; }
-  .res-up.show { opacity: 1; transform: translateY(0); }
+  .res-up { display: flex; align-items: flex-start; gap: 6px; color: #15803d; font-size: 11px; font-weight: 800; line-height: 1.4; visibility: hidden; transform: translateY(5px); transition: transform 0.4s ease; }
+  .res-up.show { visibility: visible; transform: translateY(0); }
   .tutor-lead { font-size: 12.5px; font-weight: 800; color: #10182e; line-height: 1.4; margin-bottom: 9px; }
   .tutor-row { display: flex; align-items: center; gap: 7px; font-size: 10.5px; color: #4b5563; margin-bottom: 6px; }
   .tutor-btn { width: 100%; background: var(--navy); color: #fff; border: none; border-radius: 12px; padding: 11px; font-size: 12px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 7px; margin-top: 5px; }
@@ -827,7 +844,7 @@
     min-height: 16px;
   }
   .cap.swap { animation: capIn 0.45s cubic-bezier(0.22, 0.7, 0.3, 1); }
-  @keyframes capIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: none; } }
+  @keyframes capIn { from { transform: translateY(5px); } to { transform: none; } }
 
   .scene-nav { display: flex; align-items: center; gap: 14px; }
   .arrow {
@@ -845,8 +862,9 @@
   }
   .arrow:hover { background: rgba(255, 255, 255, 0.12); color: #fff; transform: scale(1.06); }
   .arrow svg { display: block; }
-  /* Cada punto es un botón de 24 px de alto (objetivo táctil mínimo, WCAG 2.5.8); el punto visible
-     sigue siendo de 8 px y se dibuja con ::before. El activo se ensancha a 30 px. */
+  /* Cada punto es un botón de 24x24 px (objetivo táctil mínimo, WCAG 2.5.8). El punto de 8 px es
+     ::before y la píldora del activo es ::after; el cambio entre ambos es solo opacity, que se
+     compone en la GPU (animar width, como antes, obliga a recalcular el layout). */
   .dots { display: flex; gap: 0; align-items: center; }
   .dot-i {
     position: relative;
@@ -856,24 +874,24 @@
     padding: 0;
     background: none;
     cursor: pointer;
-    transition: width 0.3s ease;
   }
-  .dot-i::before {
+  .dot-i::before,
+  .dot-i::after {
     content: "";
     position: absolute;
     left: 50%;
     top: 50%;
-    width: 8px;
     height: 8px;
-    transform: translate(-50%, -50%);
+    margin-top: -4px;
     border-radius: 99px;
-    background: rgba(255, 255, 255, 0.25);
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
   }
+  .dot-i::before { width: 8px; margin-left: -4px; background: rgba(255, 255, 255, 0.25); }
+  .dot-i::after { width: 22px; margin-left: -11px; background: var(--gold); opacity: 0; }
   .dot-i:hover::before { background: rgba(255, 255, 255, 0.5); }
   .dot-i:focus-visible { outline: 2px solid var(--gold); outline-offset: -2px; border-radius: 12px; }
-  .dot-i.on { width: 30px; }
-  .dot-i.on::before { width: 22px; background: var(--gold); }
+  .dot-i.on::before { opacity: 0; }
+  .dot-i.on::after { opacity: 1; }
 
   /* Vista móvil: teléfono comprimido y flechas flotando a los lados */
   @media (max-width: 640px) {
@@ -894,11 +912,11 @@
   @media (prefers-reduced-motion: reduce) {
     .panel { transition: none; }
     .s { opacity: 1 !important; animation: none !important; }
-    .pill-btn.next, .star-ic { animation: none !important; }
+    .pill-btn.next::after, .star-ic { animation: none !important; }
     #radar-poly, .rdot { transform: none; opacity: 1; transition: none; }
-    .affinity-up { opacity: 1; transform: none; transition: none; }
+    .affinity-up { visibility: visible; transform: none; transition: none; }
     #ring-progress { transition: none; }
-    .res-up { opacity: 1; transform: none; }
+    .res-up { visibility: visible; transform: none; }
   }
 </style>
 
