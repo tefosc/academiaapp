@@ -1,0 +1,7 @@
+Tipografías alojadas en este sitio (subconjunto latin, fuentes variables):
+
+- Inter            © The Inter Project Authors (https://github.com/rsms/inter)
+- Space Grotesk    © The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk)
+
+Ambas se distribuyen bajo la SIL Open Font License 1.1:
+https://openfontlicense.org
