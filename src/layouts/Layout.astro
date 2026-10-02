@@ -10,7 +10,8 @@ interface Props {
 const {
   title = "AcademIA — Preparación examen de admisión UNC",
   description = "AcademIA: preparación para el examen de admisión a la UNC (Cajamarca). Exámenes reales, plan personalizado y tu afinidad por carrera en tiempo real.",
-  image = "/og.png",
+  // Nombre versionado: las redes guardan la imagen en caché por URL, así que un cambio de diseño lleva nombre nuevo
+  image = "/og-v2.png",
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site);
@@ -96,6 +97,7 @@ const jsonLd = {
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta
@@ -108,6 +110,7 @@ const jsonLd = {
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:image:alt" content="AcademIA — preparación para el examen de admisión UNC" />
 
     <!-- Datos estructurados -->
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
