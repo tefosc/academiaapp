@@ -1,7 +1,7 @@
 Tipografías alojadas en este sitio (subconjunto latin, fuentes variables):
 
-- Inter            © The Inter Project Authors (https://github.com/rsms/inter)
-- Space Grotesk    © The Space Grotesk Project Authors (https://github.com/floriankarsten/space-grotesk)
+- Bitter         © The Bitter Project Authors (https://github.com/solmatas/BitterPro)
+- Public Sans    © The Public Sans Project Authors (https://github.com/uswds/public-sans)
 
 Ambas se distribuyen bajo la SIL Open Font License 1.1:
 https://openfontlicense.org
