@@ -20,7 +20,7 @@ const APP_STORE_URL = "https://apps.apple.com/pe/app/academia-unc/id6783406120";
           <a href="#modulos">Módulos UNC</a>
           <a href="#voces">Testimonios</a>
         </nav>
-        <a class="nav-cta" href="#inicio">Descargar</a>
+        <a class="nav-cta" id="nav-cta" href="#inicio" data-ios={APP_STORE_URL} data-android={PLAY_URL}>Descargar</a>
         <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Abrir menú">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
         </button>
@@ -299,6 +299,13 @@ const APP_STORE_URL = "https://apps.apple.com/pe/app/academia-unc/id6783406120";
       document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && nav.classList.contains('open')) { setMenu(false); toggle.focus(); } });
       document.addEventListener('click', function (e) { if (!nav.contains(e.target)) setMenu(false); });
       window.matchMedia('(min-width: 861px)').addEventListener('change', function (e) { if (e.matches) setMenu(false); });
+
+      /* ── "Descargar": en el móvil va directo a su tienda; en computadora sigue llevando al hero, donde están las dos ── */
+      var cta = $('nav-cta'), ua = navigator.userAgent;
+      /* iPadOS se presenta como Mac; se distingue por la pantalla táctil */
+      var isIOS = /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var store = isIOS ? cta.getAttribute('data-ios') : /Android/i.test(ua) ? cta.getAttribute('data-android') : null;
+      if (store) cta.setAttribute('href', store);
 
       /* ── Scroll spy del menú ── */
       if ('IntersectionObserver' in window) {
